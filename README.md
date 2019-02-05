@@ -9,3 +9,21 @@ The goal of this project is to create an application that will allow the user to
 - Application will parse that picture into headings, graphics, emphasized text, etc.
 - Application will OCR the picture
 - Application will tag/name all of the headings, graphics, emphasized text, etc. to make it searchable
+
+## Tools
+### For iOS Development
+- XCode [Download here](https://developer.apple.com/xcode/)
+### For Android Development
+- Android Studio [Download here](https://developer.android.com/studio/?gclid=Cj0KCQiAheXiBRD-ARIsAODSpWMtnTBZzuQ7cvWkhO41jAnYb0yHR1qYPky0OviE6CnSgzSxytjidAEaAkw5EALw_wcB)
+
+## Resources
+### For iOS Development
+- Swift [and a little introduction](https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/) [and a little video introduction](https://www.youtube.com/watch?v=5b91dFhZz0g)
+- Google Mobile Vision [Read More](https://developers.google.com/vision/ios/getting-started)
+-- Will be used to read the notes page
+- [Using the camera in an iOS app](https://www.appcoda.com/ios-programming-camera-iphone-app/)
+### For Android Development
+- Android Development [and a little introduction](https://developer.android.com/training/basics/firstapp/)
+- Google Mobile Vision [Read More](https://developers.google.com/vision/android/getting-started)
+-- Will be used to read the notes page
+- [Using the camera in an Android app](https://developer.android.com/training/camera/)
