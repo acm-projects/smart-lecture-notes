@@ -21,10 +21,8 @@ The goal of this project is to create an application that will allow the user to
 ### For iOS Development
 - Swift [and a little introduction](https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/) [and a little video introduction](https://www.youtube.com/watch?v=5b91dFhZz0g)
 - Google Mobile Vision [Read More](https://developers.google.com/vision/ios/getting-started)
--- Will be used to read the notes page
 - [Using the camera in an iOS app](https://www.appcoda.com/ios-programming-camera-iphone-app/)
 ### For Android Development
 - Android Development [and a little introduction](https://developer.android.com/training/basics/firstapp/)
 - Google Mobile Vision [Read More](https://developers.google.com/vision/android/getting-started)
--- Will be used to read the notes page
 - [Using the camera in an Android app](https://developer.android.com/training/camera/)
