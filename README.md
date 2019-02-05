@@ -6,9 +6,10 @@ The goal of this project is to create an application that will allow the user to
 
 ## Minimum Viable Product
 - Application will use the onboard camera to take a picture of notes
+- Application will OCR the picture (probably start with typed pages and then move on to handwritten notes)
 - Application will parse that picture into headings, graphics, emphasized text, etc.
-- Application will OCR the picture
 - Application will tag/name all of the headings, graphics, emphasized text, etc. to make it searchable
+Note: this will possibly act as a loose timeline for the project, in other words, these things will probably happen in this order
 
 ## Tools
 ### For iOS Development
