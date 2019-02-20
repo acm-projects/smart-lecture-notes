@@ -1,50 +1,44 @@
-/**
- * Copyright 2017, Google, Inc.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 'use strict';
 
-// [START gae_node_request_example]
-const express = require('express');
 
-const vision = require('@google-cloud/vision')
+const express = require('express'); // create our express server object
 
-const fileUploader = require('express-fileupload');
+const vision = require('@google-cloud/vision') // create our google cloud vision object
 
-const client = new vision.ImageAnnotatorClient();
+const fileUploader = require('express-fileupload'); // this object handles grabbing uploaded files in post requests
 
-
-const app = express();
+const client = new vision.ImageAnnotatorClient(); // instantiate the vision image annotator client
 
 
-app.use(fileUploader());
+const app = express(); // create an instance of the express server 
 
 
+app.use(fileUploader()); // tells express to use the file uploader object to parse post requests
+
+// this declares the post function for a /process image request
 app.post('/processImage',function(req,res) {
   
 
-let imageFile = req.files.image.data;
-let encoded = Buffer.from (imageFile).toString('base64');
+let imageFile = req.files.image.data; // grab the image buffer data from the post request using file uploader
+let encoded = Buffer.from (imageFile).toString('base64'); // convert the buffer we grabbed into a base 64 buffer
+//NOTE: the google api only accepts files converted to base64 buffers
 
+//this creates the request object that the google api is designed to recieve  
 const request = {
-
+  
+  //image is a keyword that tells the google api that we are passing
+  // it an image buffer
   image: { content: encoded }
 
 };
 
+  
+//this calls the client's documenttextdetection and passes it the request object
 client.documentTextDetection(request).then(response => {
-
+  
+  // sends googles response to be displayed as the response on the server
     res.send(response);
 
   })
@@ -56,8 +50,9 @@ client.documentTextDetection(request).then(response => {
 // Start the server
 const PORT = process.env.PORT || 8080;
 
+// This listens to the port and picks up requests
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
   console.log('Press Ctrl+C to quit.');
 });
-// [END gae_node_request_example]
+
