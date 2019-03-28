@@ -6,7 +6,8 @@ import {
 	ScrollView,
 	TouchableOpacity,
 	SegmentedControlIOS,
-	SafeAreaView
+	SafeAreaView,
+	Button
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -37,16 +38,27 @@ class ClassesScreen extends Component {
 	}
 
 	render() {
+
+		const { navigate } = this.props.navigation;
+
 		return (
 			<View style={styles.container}>
 				<ScrollView
 					showsVerticalScrollIndicator={false}
 				>
+
+					{/* !Post Call */}
+
 					<View style={styles.titleBar}>
 						<Image style={styles.avatar} source={require('../../assets/huy.jpg')} />
 						<Text style={styles.name}>Huy Pham</Text>
 						<Text style={styles.title}>@huypham50</Text>
 					</View>
+					<TouchableOpacity
+						style={styles.button}
+						onPress={() => navigate('Login')}>
+						<Text style={styles.buttonText}>Log Out</Text>
+					</TouchableOpacity>
 
 					{/* <Text style={styles.subTitle}>
                          Your classes
@@ -129,5 +141,19 @@ const styles = StyleSheet.create({
 	text: {
 		fontFamily: 'Avenir Next',
 		fontSize: 20,
+	},
+	button: {
+		backgroundColor: '#FD612C',
+		paddingVertical: 15,
+		width: '100%',
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 20
+	},
+	buttonText: {
+		textAlign: 'center',
+		color: 'white',
+		fontSize: 20,
+		fontFamily: 'Avenir Next'
 	}
 });

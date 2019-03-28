@@ -20,7 +20,27 @@ import ListCard from './components/ListCard'
 
 import ProfileSettings from './components/ProfileSettings'
 
-//const ScheduleStack;
+import LoginScreen from './components/LoginScreen';
+import SplashScreen from './components/SplashScreen';
+import SignUpScreen from './components/SignUpScreen';
+import WalkthroughScreen from './components/WalkthroughScreen';
+
+const AuthStack = createStackNavigator({
+    Login: {
+        screen: LoginScreen
+    },
+    Splash: {
+        screen: SplashScreen
+    },
+    SignUp: {
+        screen: SignUpScreen
+    },
+    Walkthrough: {
+        screen: WalkthroughScreen
+    }
+}, {
+        initialRouteName: 'Login'
+    })
 
 const ClassesStack = createStackNavigator({
     Classes: {
@@ -44,7 +64,7 @@ const AppStack = createBottomTabNavigator({
     Schedule: {
         screen: ScheduleScreen,
         navigationOptions: {
-            tabBarLabel: 'New Note',
+            tabBarLabel: 'Tasks',
             tabBarIcon: ({ tintColor }) => (
                 <Ionicons name="md-calendar" color={tintColor} size={24} />
             )
@@ -70,6 +90,14 @@ const AppStack = createBottomTabNavigator({
     }
 })
 
-const App = createAppContainer(AppStack)
+// const App = createAppContainer(AppStack)
 
-export default App;
+export default createAppContainer(createSwitchNavigator(
+    {
+        App: AppStack,
+        Auth: AuthStack
+    },
+    {
+        initialRouteName: 'Auth',
+    }
+));

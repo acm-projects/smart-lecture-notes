@@ -86,8 +86,8 @@ class ClassDetail extends Component {
                     sections={[
                          {title: 'Week 1', data: ['1.1 Calculus Review', '1.2 Matrix Operations', '2.1 Dot Product', '2.2 Plane Systems']},
                          {title: 'Week 2', data: ['2.3 Partial Derivatives', '2.4 Limits', '2.5 Determinants']},
-                         {title: 'Family', data: ['Emma', 'Emi', 'Emiliano', 'Ernesto']},
-                         {title: 'Friends', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
+                         // {title: 'Family', data: ['Emma', 'Emi', 'Emiliano', 'Ernesto']},
+                         // {title: 'Friends', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
                     ]}
                     renderItem={({item}) => (
                          <TouchableOpacity>

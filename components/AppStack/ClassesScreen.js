@@ -16,6 +16,9 @@ class ClassesScreen extends Component {
           style={styles.container}
           showsVerticalScrollIndicator={false}
         >
+
+        {/* !Post Call */}
+
           <View style={styles.titleBar}>
             <Image style={styles.avatar} source={require('../../assets/huy.jpg')} />
             <Text style={styles.title}>Welcome back,</Text>
