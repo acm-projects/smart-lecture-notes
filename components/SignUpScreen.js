@@ -23,76 +23,79 @@ class SignUpScreen extends Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <ScrollView
-                vertical={true}
-            >
+            <SafeAreaView style={{ flex: 1 }}>
                 <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                    <Text style={styles.text}>
-                        Create your account
+                    <ScrollView
+                        vertical={true}
+                        showsVerticalScrollIndicator = {false}
+                    >
+                        <Text style={styles.text}>
+                            Create your account
                 </Text>
-                    <Text style={styles.inputHeader}>
-                        NAME
+                        <Text style={styles.inputHeader}>
+                            NAME
                 </Text>
-                    <TextInput
-                        placeholder="Name"
-                        placeholderTextColor='grey'
-                        fontFamily='Avenir Next'
-                        returnKeyType="next"
-                        onSubmitEditing={() => this.emailInput.focus()}
-                        style={styles.input}
-                    />
-                    <Text style={styles.inputHeader}>
-                        EMAIL
+                        <TextInput
+                            placeholder="Name"
+                            placeholderTextColor='grey'
+                            fontFamily='Avenir Next'
+                            returnKeyType="next"
+                            onSubmitEditing={() => this.emailInput.focus()}
+                            style={styles.input}
+                        />
+                        <Text style={styles.inputHeader}>
+                            EMAIL
                 </Text>
-                    <TextInput
-                        placeholder="Email"
-                        placeholderTextColor='grey'
-                        fontFamily='Avenir Next'
-                        keyboardType='email-address'
-                        returnKeyType="next"
-                        ref={(input) => this.emailInput = input}
-                        onSubmitEditing={() => this.passwordInput.focus()}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        style={styles.input}
-                    />
-                    <Text style={styles.inputHeader}>
-                        PASSWORD
+                        <TextInput
+                            placeholder="Email"
+                            placeholderTextColor='grey'
+                            fontFamily='Avenir Next'
+                            keyboardType='email-address'
+                            returnKeyType="next"
+                            ref={(input) => this.emailInput = input}
+                            onSubmitEditing={() => this.passwordInput.focus()}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            style={styles.input}
+                        />
+                        <Text style={styles.inputHeader}>
+                            PASSWORD
                 </Text>
-                    <TextInput
-                        placeholder="Password"
-                        placeholderTextColor='grey'
-                        fontFamily='Avenir Next'
-                        returnKeyType="next"
-                        secureTextEntry
-                        style={styles.input}
-                        ref={(input) => this.passwordInput = input}
-                        onSubmitEditing={() => this.passwordConfirmInput.focus()}
-                    />
-                    <Text style={styles.inputHeader}>
-                        CONFIRM PASSWORD
+                        <TextInput
+                            placeholder="Password"
+                            placeholderTextColor='grey'
+                            fontFamily='Avenir Next'
+                            returnKeyType="next"
+                            secureTextEntry
+                            style={styles.input}
+                            ref={(input) => this.passwordInput = input}
+                            onSubmitEditing={() => this.passwordConfirmInput.focus()}
+                        />
+                        <Text style={styles.inputHeader}>
+                            CONFIRM PASSWORD
                 </Text>
-                    <TextInput
-                        placeholder="Confirm Password"
-                        placeholderTextColor='grey'
-                        fontFamily='Avenir Next'
-                        returnKeyType="go"
-                        secureTextEntry
-                        style={styles.input}
-                        ref={(input) => this.passwordConfirmInput = input}
-                    />
+                        <TextInput
+                            placeholder="Confirm Password"
+                            placeholderTextColor='grey'
+                            fontFamily='Avenir Next'
+                            returnKeyType="go"
+                            secureTextEntry
+                            style={styles.input}
+                            ref={(input) => this.passwordConfirmInput = input}
+                        />
 
-                    {/* !Post Call */}
+                        {/* !Post Call */}
 
-                    <View style={styles.buttonContainer}>
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => navigate('Classes')}>
-                            <Text style={styles.buttonText}>Lets go!</Text>
-                        </TouchableOpacity>
-                    </View>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={() => navigate('Classes')}>
+                                <Text style={styles.buttonText}>Lets go!</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </ScrollView>
                 </KeyboardAvoidingView>
-            </ScrollView>
+            </SafeAreaView>
         )
     }
 }
