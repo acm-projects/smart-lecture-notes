@@ -78,6 +78,8 @@ class FolderDetail extends Component {
 
     render() {
 
+        const { navigation } = this.props
+
         const _classIndex = navigation.getParam('_classIndex')
         const _foldersIndex = navigation.getParam('_foldersIndex')
 
@@ -116,9 +118,9 @@ class FolderDetail extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => ({
     all: state.all
-}
+})
 
 export default connect(
     mapStateToProps,
