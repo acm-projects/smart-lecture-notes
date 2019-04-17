@@ -17,7 +17,7 @@ const _height = 70
 
 class ListCard extends Component {
     render() {
-        const { title, color, desc, key, folders } = this.props
+        const { title, color, desc, key, classIndex, classID, folders } = this.props
         return (
             <TouchableOpacity
                 style={[styles.container, { backgroundColor: color }]}
@@ -27,7 +27,9 @@ class ListCard extends Component {
                         color,
                         desc,
                         key,
-                        folders
+                        folders,
+                        classID,
+                        classIndex
                     })
                 }}
             >

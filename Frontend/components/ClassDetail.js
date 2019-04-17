@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+import { fetchAll } from '../actions'
 import axios from 'axios';
 
 class ClassDetail extends Component {
@@ -20,7 +22,23 @@ class ClassDetail extends Component {
             headerRight: (
                 <TouchableOpacity
                     style={{ paddingRight: 10 }}
-                    onPress={() => this._createNewFolder()}
+                    onPress={() => {
+                        AlertIOS.prompt(
+                            'Create New Folder',
+                            'Enter title of new folder',
+                            text => {
+                                axios.post(`http://127.0.0.1:8080/fileManage/addFolder/${navigation.getParam('classID')}`, {
+                                    folderName: text
+                                }).then((res) => {
+                                    console.log("STARTS REFETCHING")
+                                    navigation.state.params.refetch();
+                                    console.log("ENDS REFETCHING")
+                                }).catch((err) => {
+                                    console.log(err)
+                                })
+                            }
+                        );
+                    }}
                 >
                     <Ionicons name="ios-add" color="#007AFF" size={36} />
                 </TouchableOpacity>
@@ -28,49 +46,21 @@ class ClassDetail extends Component {
         };
     };
 
-    _createNewFolder = async () => {
-        AlertIOS.prompt('New Folder', 'Enter name of new folder', text => {
-            console.log("NEW FOLDER " + text)
-        })
-    };
+    componentDidMount() {
+        this.props.navigation.setParams({
+            classID: this.props.navigation.getParam('classID'),
+            refetch: this._refetch,
+        });
+    }
 
-    state = {
-        course: [
-            {
-                title: 'Week 1',
-                data: [
-                    '1.1 Calculus Review',
-                    '1.2 Matrix Operations',
-                    '2.1 Dot Product',
-                    '2.2 Plane Systems'
-                ]
-            },
-            {
-                title: 'Week 2',
-                data: [
-                    '2.3 Partial Derivatives',
-                    '2.4 Limits',
-                    '2.5 Determinants'
-                ]
-            },
-            {
-                title: 'Family',
-                data: ['Emma', 'Emi', 'Emiliano', 'Ernesto']
-            },
-            {
-                title: 'Friends',
-                data: [
-                    'Jackson',
-                    'James',
-                    'Jillian',
-                    'Jimmy',
-                    'Joel',
-                    'John',
-                    'Julie'
-                ]
-            }
-        ]
-    };
+    _refetch = async () => {
+        //const _classIndex = this.props.navigation.getParam('classIndex')
+        // console.log("Old state:")
+        // console.log(this.props.all[_classIndex].folders)
+        await this.props.fetchAll()
+        // console.log("New state:")
+        // console.log(this.props.all[_classIndex].folders)
+    }
 
     renderSeparator = () => {
         return (
@@ -86,7 +76,9 @@ class ClassDetail extends Component {
 
     render() {
         const { navigation } = this.props;
-        const folders = navigation.getParam('folders', []);
+
+        const _classIndex = navigation.getParam('classIndex')
+        const _folders = navigation.getParam('folders')
 
         return (
             <View style={styles.container}>
@@ -96,30 +88,18 @@ class ClassDetail extends Component {
                     // onChange={this.setSearchText.bind(this)}
                     placeholder="Search State"
                 />
-                {/* <SectionList
-                    sections={this.state.course}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity>
-                            <Text key={index} style={styles.item}>{index}{" "}{item}</Text>
-                        </TouchableOpacity>
-                    )}
-                    renderSectionHeader={({ section }) => (
-                        <Text style={styles.sectionHeader}>
-                            {section.title}
-                        </Text>
-                    )}
-                    keyExtractor={(item, keyIndex) => keyIndex}
-                /> */}
+
                 <FlatList
                     style={styles.listContainer}
-                    data={folders}
+                    data={this.props.all[_classIndex].folders}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             onPress={() => {
                                 console.log(index);
-                                this.props.navigation.navigate('Folder', {
-                                    folders,
-                                    index
+                                navigation.navigate('Folder', {
+                                    _folders,
+                                    _classIndex,
+                                    _folderindex: index
                                 });
                             }}
                         >
@@ -135,7 +115,14 @@ class ClassDetail extends Component {
     }
 }
 
-export default ClassDetail;
+const mapStateToProps = state => ({
+    all: state.all
+});
+
+export default connect(
+    mapStateToProps,
+    { fetchAll }
+)(ClassDetail);
 
 const styles = StyleSheet.create({
     container: {

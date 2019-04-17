@@ -9,6 +9,8 @@ import {
 } from 'react-native'
 
 import { Ionicons } from '@expo/vector-icons'
+import { connect } from 'react-redux';
+import { fetchAll } from '../actions'
 
 class FolderDetail extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -75,6 +77,10 @@ class FolderDetail extends Component {
     }
 
     render() {
+
+        const _classIndex = navigation.getParam('_classIndex')
+        const _foldersIndex = navigation.getParam('_foldersIndex')
+
         return (
             <View style={styles.container}>
                 <TextInput
@@ -83,20 +89,7 @@ class FolderDetail extends Component {
                     // onChange={this.setSearchText.bind(this)}
                     placeholder="Search State"
                 />
-                {/* <SectionList
-                    sections={this.state.course}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity>
-                            <Text key={index} style={styles.item}>{index}{" "}{item}</Text>
-                        </TouchableOpacity>
-                    )}
-                    renderSectionHeader={({ section }) => (
-                        <Text style={styles.sectionHeader}>
-                            {section.title}
-                        </Text>
-                    )}
-                    keyExtractor={(item, keyIndex) => keyIndex}
-                /> */}
+
                 <FlatList
                     style={styles.listContainer}
                     data={[
@@ -123,7 +116,14 @@ class FolderDetail extends Component {
     }
 }
 
-export default FolderDetail;
+const mapStateToProps = (state) => {
+    all: state.all
+}
+
+export default connect(
+    mapStateToProps,
+    { fetchAll }
+)(FolderDetail);
 
 const styles = StyleSheet.create({
     container: {

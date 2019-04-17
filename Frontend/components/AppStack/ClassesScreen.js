@@ -79,6 +79,8 @@ class ClassesScreen extends Component {
                                     color="#62D26F"
                                     desc={post.desc}
                                     folders={post.folders}
+                                    classIndex={i}
+                                    classID={post._id}
                                 />
                             )
                         })}
