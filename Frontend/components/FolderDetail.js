@@ -24,44 +24,6 @@ class FolderDetail extends Component {
         }
     }
 
-    state = {
-        course: [
-            {
-                title: 'Week 1',
-                data: [
-                    '1.1 Calculus Review',
-                    '1.2 Matrix Operations',
-                    '2.1 Dot Product',
-                    '2.2 Plane Systems',
-                ],
-            },
-            {
-                title: 'Week 2',
-                data: [
-                    '2.3 Partial Derivatives',
-                    '2.4 Limits',
-                    '2.5 Determinants',
-                ],
-            },
-            {
-                title: 'Family',
-                data: ['Emma', 'Emi', 'Emiliano', 'Ernesto'],
-            },
-            {
-                title: 'Friends',
-                data: [
-                    'Jackson',
-                    'James',
-                    'Jillian',
-                    'Jimmy',
-                    'Joel',
-                    'John',
-                    'Julie',
-                ],
-            },
-        ],
-    }
-
     renderSeparator = () => {
         return (
             <View
@@ -85,7 +47,7 @@ class FolderDetail extends Component {
 
         console.log("DATA IS ________")
         console.log(_classIndex + " " + _foldersIndex);
-        console.log(this.props.all[_classIndex].folders[_foldersIndex].documents.length)
+        console.log(this.props.all[_classIndex].folders[_foldersIndex].documents)
 
         return (
             <View style={styles.container}>
@@ -98,16 +60,16 @@ class FolderDetail extends Component {
 
                 <FlatList
                     style={styles.listContainer}
-                    data={this.props.all[_classIndex].documents}
+                    data={this.props.all[_classIndex].folders[_foldersIndex].documents}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             onPress={() => {
                                 console.log("DATA IS ________")
-                                console.log(data)
+                                console.log(item)
                             }}
                         >
                             <Text style={styles.item} key={index}>
-                                {item.title}
+                                {item}
                             </Text>
                         </TouchableOpacity>
                     )}
