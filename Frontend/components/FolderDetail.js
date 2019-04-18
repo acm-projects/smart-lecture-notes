@@ -83,6 +83,10 @@ class FolderDetail extends Component {
         const _classIndex = navigation.getParam('_classIndex')
         const _foldersIndex = navigation.getParam('_foldersIndex')
 
+        console.log("DATA IS ________")
+        console.log(_classIndex + " " + _foldersIndex);
+        console.log(this.props.all[_classIndex].folders[_foldersIndex].documents.length)
+
         return (
             <View style={styles.container}>
                 <TextInput
@@ -94,20 +98,16 @@ class FolderDetail extends Component {
 
                 <FlatList
                     style={styles.listContainer}
-                    data={[
-                        { key: 'Item 1' },
-                        { key: 'Item 3' },
-                        { key: 'Item 5' },
-                        { key: 'Item 7' },
-                    ]}
+                    data={this.props.all[_classIndex].documents}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             onPress={() => {
-                                console.log(index)
+                                console.log("DATA IS ________")
+                                console.log(data)
                             }}
                         >
                             <Text style={styles.item} key={index}>
-                                {item.key}
+                                {item.title}
                             </Text>
                         </TouchableOpacity>
                     )}

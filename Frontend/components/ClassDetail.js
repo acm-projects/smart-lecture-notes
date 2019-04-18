@@ -99,7 +99,7 @@ class ClassDetail extends Component {
                                 navigation.navigate('Folder', {
                                     _folders,
                                     _classIndex,
-                                    _folderindex: index
+                                    _foldersIndex: index
                                 });
                             }}
                         >

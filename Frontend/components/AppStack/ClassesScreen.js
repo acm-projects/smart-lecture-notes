@@ -76,7 +76,7 @@ class ClassesScreen extends Component {
                                 <ListCard
                                     key={i}
                                     title={post.name}
-                                    color="#62D26F"
+                                    color="#4186E0"
                                     desc={post.desc}
                                     folders={post.folders}
                                     classIndex={i}
