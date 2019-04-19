@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
     FlatList,
     StyleSheet,
@@ -7,29 +7,31 @@ import {
     View,
     TouchableOpacity,
     Image
-} from 'react-native'
+} from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import { fetchAll } from '../actions'
+import { fetchAll } from '../actions';
 
 class FolderDetail extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: navigation.getParam('title', ''),
             headerRight: (
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={{ paddingRight: 10 }}
-                    onPress={() => navigation.navigate('Camera', {
-                        // tomorow
-                        _foldersIndex: navigation.getParam('_foldersIndex')
-                    })}
+                    onPress={() => {
+                        navigation.navigate('Camera', {
+                            _foldersIndex: navigation.getParam('_foldersIndex'),
+                            _foldersID: navigation.getParam('_foldersID')
+                        });
+                    }}
                 >
                     <Ionicons name="ios-add" color="#007AFF" size={36} />
                 </TouchableOpacity>
-            ),
-        }
-    }
+            )
+        };
+    };
 
     renderSeparator = () => {
         return (
@@ -39,24 +41,25 @@ class FolderDetail extends Component {
                     //width: '86%',
                     //marginLeft: '14%',
                     width: '100%',
-                    backgroundColor: '#CED0CE',
+                    backgroundColor: '#CED0CE'
                 }}
             />
-        )
-    }
+        );
+    };
 
     render() {
+        const { navigation } = this.props;
 
-        const { navigation } = this.props
+        const _classIndex = navigation.getParam('_classIndex');
+        const _foldersIndex = navigation.getParam('_foldersIndex');
 
-        const _classIndex = navigation.getParam('_classIndex')
-        const _foldersIndex = navigation.getParam('_foldersIndex')
+        const imageUrl = 'http://127.0.0.1:8080/fileManage/image/';
 
-        const imageUrl = 'http://127.0.0.1:8080/fileManage/image/'
-
-        console.log("DATA IS ________")
-        console.log(_classIndex + " " + _foldersIndex);
-        console.log(this.props.all[_classIndex].folders[_foldersIndex].documents)
+        console.log('DATA IS ________');
+        console.log(_classIndex + ' ' + _foldersIndex);
+        console.log(
+            this.props.all[_classIndex].folders[_foldersIndex].documents
+        );
 
         return (
             <View style={styles.container}>
@@ -69,38 +72,37 @@ class FolderDetail extends Component {
 
                 <FlatList
                     style={styles.listContainer}
-                    data={this.props.all[_classIndex].folders[_foldersIndex].documents}
+                    data={
+                        this.props.all[_classIndex].folders[_foldersIndex]
+                            .documents
+                    }
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             key={index}
                             onPress={() => {
-                                console.log("DATA IS ________")
-                                console.log(item)
-                                console.log(imageUrl + item.image)
+                                console.log('DATA IS ________');
+                                console.log(item);
+                                console.log(imageUrl + item.image);
                             }}
                         >
                             <Image
                                 style={styles.thumbnail}
-                                source={{uri: imageUrl + item.image}}
+                                source={{ uri: imageUrl + item.image }}
                             />
-                            <Text style={styles.itemTitle}>
-                                {item.title}
-                            </Text>
-                            <Text style={styles.itemDesc}>
-                                {item.desc}
-                            </Text>
+                            <Text style={styles.itemTitle}>{item.title}</Text>
+                            <Text style={styles.itemDesc}>{item.desc}</Text>
                         </TouchableOpacity>
                     )}
                     ItemSeparatorComponent={this.renderSeparator}
                 />
             </View>
-        )
+        );
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     all: state.all
-})
+});
 
 export default connect(
     mapStateToProps,
@@ -109,7 +111,7 @@ export default connect(
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
     listContainer: {
         borderTopWidth: 1,
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Avenir Next',
         fontWeight: 'bold',
-        backgroundColor: 'rgba(247,247,247,1.0)',
+        backgroundColor: 'rgba(247,247,247,1.0)'
     },
     itemTitle: {
         position: 'absolute',
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         fontFamily: 'Avenir Next',
         fontWeight: '600',
-        fontSize: 18,
+        fontSize: 18
     },
     itemDesc: {
         position: 'absolute',
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         fontFamily: 'Avenir Next',
         fontWeight: '500',
-        fontSize: 18,
+        fontSize: 18
     },
     searchBar: {
         //borderWidth: 1,
@@ -154,4 +156,4 @@ const styles = StyleSheet.create({
         width: 50,
         height: 75
     }
-})
+});

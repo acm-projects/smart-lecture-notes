@@ -23,8 +23,12 @@ class CameraScreen extends Component {
             let photo = await this.camera.takePictureAsync()
             await this.setState({ photo: photo })
             
+            console.log("HAHA " + this.props.navigation.getParam('_foldersIndex'))
+            console.log("HOHO " + this.props.navigation.getParam('_foldersID'))
             this.props.navigation.navigate('Photo', {
                 photo: this.state.photo,
+                _foldersIndex: this.props.navigation.getParam('_foldersIndex'),
+                _foldersID: this.props.navigation.getParam('_foldersID')
             });
         } else {
             console.log('not a cam')

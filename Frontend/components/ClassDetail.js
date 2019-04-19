@@ -96,10 +96,12 @@ class ClassDetail extends Component {
                         <TouchableOpacity
                             onPress={() => {
                                 console.log(index);
+                                console.log("HUHU " + _folders[index]._id)
                                 navigation.navigate('Folder', {
                                     _folders,
                                     _classIndex,
-                                    _foldersIndex: index
+                                    _foldersIndex: index,
+                                    _foldersID: _folders[index]._id
                                 });
                             }}
                         >
