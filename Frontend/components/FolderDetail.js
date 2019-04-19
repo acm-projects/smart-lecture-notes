@@ -21,6 +21,7 @@ class FolderDetail extends Component {
                 <TouchableOpacity 
                     style={{ paddingRight: 10 }}
                     onPress={() => navigation.navigate('Camera', {
+                        // tomorow
                         _foldersIndex: navigation.getParam('_foldersIndex')
                     })}
                 >
