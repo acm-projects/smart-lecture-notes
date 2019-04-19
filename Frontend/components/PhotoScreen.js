@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
     View,
     Image,
@@ -6,32 +6,93 @@ import {
     TouchableOpacity,
     TextInput,
     StyleSheet,
-} from 'react-native'
-import TagsInput from './TagsInput'
+    Platform
+} from 'react-native';
+
+import TagInput from 'react-native-tag-input';
+import axios from 'axios';
+
+import { connect } from 'react-redux';
+import { fetchAll } from '../actions'
+
+const inputProps = {
+    keyboardType: 'default',
+    autoFocus: false,
+    style: {
+        fontFamily: 'Avenir Next',
+        fontSize: 16,
+        fontWeight: '500',
+        marginVertical: Platform.OS == 'ios' ? 4 : -2
+    }
+};
+
+const scrollViewProps = {
+    scrollEnabled: true
+};
 
 class PhotoScreen extends Component {
     static navigationOptions = {
-        header: null,
-    }
+        header: null
+    };
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             title: '',
             desc: '',
-            emails: [],
-            text: null,
-        }
+            tags: [],
+            text: ''
+        };
     }
 
+    onChangeText = text => {
+        this.setState({ text });
+
+        const lastTyped = text.charAt(text.length - 1);
+        const parseWhen = [',', ' ', ';', '\n'];
+
+        if (parseWhen.indexOf(lastTyped) > -1) {
+            this.setState({
+                tags: [...this.state.tags, this.state.text],
+                text: ''
+            });
+        }
+    };
+
+    _createDocument = async () => {
+        console.log('YOUR BOY');
+        console.log(this.state.title);
+        console.log(this.state.desc);
+        console.log(this.state.tags.join(' '));
+        console.log(this.props.navigation.getParam('photo', null).uri);
+
+        const _foldersIndex = this.props.navigation.getParam('_foldersIndex')
+
+        var formData = new FormData();
+
+        formData.append('title', this.state.title)
+        formData.append('desc', this.state.desc)
+        formData.append('content', 'whatever')
+        formData.append('tags', this.state.tags.join(' '))
+        formData.append('image', this.props.navigation.getParam('photo', null).uri);
+        try {
+            await axios.post('http://127.0.0.1:8080/fileManage/addDocument/' + _foldersIndex, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            await this.props.fetchAll()
+        } catch (err) {
+            console.log(err)
+        }
+    };
+
     render() {
-        const photo = this.props.navigation.getParam('photo', null)
-        console.log(this.state.emails)
-        console.log(this.state.text)
+        const photo = this.props.navigation.getParam('photo', null);
         return (
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.returnButton}
                         onPress={() => this.props.navigation.goBack()}
                     >
@@ -40,7 +101,10 @@ class PhotoScreen extends Component {
 
                     <Text style={styles.header}>New Note</Text>
 
-                    <TouchableOpacity style={styles.nextButton}>
+                    <TouchableOpacity
+                        style={styles.nextButton}
+                        onPress={() => this._createDocument()}
+                    >
                         <Text style={styles.nextButtonText}>Next</Text>
                     </TouchableOpacity>
                 </View>
@@ -51,7 +115,7 @@ class PhotoScreen extends Component {
                     value={this.state.title}
                     returnKeyType="next"
                     onSubmitEditing={() => {
-                        this.secondTextInput.focus()
+                        this.secondTextInput.focus();
                     }}
                     blurOnSubmit={false}
                     autoFocus={true}
@@ -59,7 +123,7 @@ class PhotoScreen extends Component {
                 <Image style={styles.image} source={{ uri: photo.uri }} />
                 <TextInput
                     ref={input => {
-                        this.secondTextInput = input
+                        this.secondTextInput = input;
                     }}
                     style={styles.descInput}
                     placeholder="Description"
@@ -67,20 +131,57 @@ class PhotoScreen extends Component {
                     value={this.state.desc}
                     //multiline={true}
                 />
-                <TagsInput />
+
+                {/* Tags */}
+                <View style={{ flex: 1, marginTop: 5 }}>
+                    <View
+                        style={{
+                            height: 500
+                        }}
+                    >
+                        <TagInput
+                            value={this.state.tags}
+                            onChange={tags => this.setState({ tags })}
+                            labelExtractor={tag => tag}
+                            text={this.state.text}
+                            onChangeText={this.onChangeText}
+                            inputProps={inputProps}
+                            tagContainerStyle={styles.tagContainer}
+                            tagTextStyle={styles.tagText}
+                            scrollViewProps={scrollViewProps}
+                        />
+                    </View>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.setState({
+                                tags: [...this.state.tags],
+                                text: this.state.text
+                            });
+                            console.log('Current tags:');
+                            console.log(this.state.tags);
+                            console.log('Current text:');
+                            console.log(this.state.text);
+                        }}
+                    />
+                </View>
             </View>
-        )
+        );
     }
 }
 
-export default PhotoScreen
+
+export default connect(
+    null,
+    { fetchAll }
+)(PhotoScreen);
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 30,
         paddingTop: 45,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF'
     },
     headerContainer: {
         flexDirection: 'row',
@@ -90,7 +191,7 @@ const styles = StyleSheet.create({
     header: {
         fontFamily: 'Avenir Next',
         fontSize: 22,
-        fontWeight: '600',
+        fontWeight: '600'
     },
     nextButton: {
         backgroundColor: '#EFEFEF',
@@ -100,12 +201,12 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         borderRadius: 100,
         top: 0,
-        right: 0,
+        right: 0
     },
     nextButtonText: {
         fontFamily: 'Avenir Next',
         fontSize: 16,
-        fontWeight: '600',
+        fontWeight: '600'
     },
     returnButton: {
         backgroundColor: '#EFEFEF',
@@ -115,12 +216,12 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         borderRadius: 100,
         top: 0,
-        left: 0,
+        left: 0
     },
     returnButtonText: {
         fontFamily: 'Avenir Next',
         fontSize: 16,
-        fontWeight: '600',
+        fontWeight: '600'
     },
     titleInput: {
         height: 40,
@@ -129,17 +230,32 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 20,
         marginTop: -2.5,
-        marginBottom: 5,
+        marginBottom: 5
     },
     descInput: {
         borderWidth: 0,
         fontFamily: 'Avenir Next',
         fontWeight: '500',
         fontSize: 18,
-        marginTop: 10,
+        marginTop: 10
     },
     image: {
         height: 200,
-        borderRadius: 10,
+        borderRadius: 10
     },
-})
+    tagContainer: {
+        backgroundColor: '#EFEFEF',
+        borderRadius: 15,
+        paddingTop: 5,
+        paddingBottom: 7,
+        height: 30,
+        marginTop: 0,
+        marginBottom: 5
+    },
+    tagText: {
+        fontFamily: 'Avenir Next',
+        fontSize: 16,
+        fontWeight: '500',
+        color: 'black'
+    }
+});

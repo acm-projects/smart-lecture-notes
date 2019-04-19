@@ -77,29 +77,8 @@ const ScheduleStack = createStackNavigator({
     },
     EditTaskDetail: {
         screen: EditTaskDetail
-    },
-    Camera: {
-        //screen: CameraScreen,
-        screen: Camera,
-        navigationOptions: {
-            header: null,
-        },
-    },
-    Photo: {
-        screen: PhotoScreen,
-    },
+    }
 })
-
-ScheduleStack.navigationOptions = ({ navigation }) => {
-    let tabBarVisible = true
-    if (navigation.state.index == 1 || navigation.state.index == 2) {
-        tabBarVisible = false
-    }
-
-    return {
-        tabBarVisible,
-    }
-}
 
 const ClassesStack = createStackNavigator({
     Classes: {
@@ -116,8 +95,29 @@ const ClassesStack = createStackNavigator({
         navigationOptions: {
             mode: 'modal'
         }
-    }
+    },
+    Camera: {
+        //screen: CameraScreen,
+        screen: Camera,
+        navigationOptions: {
+            header: null,
+        },
+    },
+    Photo: {
+        screen: PhotoScreen,
+    },
 })
+
+ClassesStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true
+    if (navigation.state.index == 3 || navigation.state.index == 4) {
+        tabBarVisible = false
+    }
+
+    return {
+        tabBarVisible,
+    }
+}
 
 const ProfileStack = createStackNavigator({
     Profile: {

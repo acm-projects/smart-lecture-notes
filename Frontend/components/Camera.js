@@ -46,6 +46,7 @@ class CameraScreen extends Component {
             
         this.props.navigation.navigate('Photo', {
             photo: this.state.photo,
+            _foldersIndex: navigation.getParam('_foldersIndex')
         });
     }
 

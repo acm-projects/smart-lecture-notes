@@ -42,9 +42,6 @@ class TagsInput extends Component {
             <View style={{ flex: 1, marginTop: 5}}>
                 <View
                     style={{
-                        //flexDirection: 'row',
-                        //alignItems: 'center',
-                        //backgroundColor: 'lightgray',
                         height: 500
                     }}
                 >
@@ -64,7 +61,7 @@ class TagsInput extends Component {
                 <TouchableOpacity
                     onPress={() => {
                         this.setState({
-                            tags: [...this.state.tags, "Hello"],
+                            tags: [...this.state.tags],
                             text: this.state.text,
                         })
                         console.log("Current tags:")
@@ -73,9 +70,6 @@ class TagsInput extends Component {
                         console.log(this.state.text)
                     }}
                 >
-                    <Text>
-                        Hello
-                    </Text>
                 </TouchableOpacity>
             </View>
         )
