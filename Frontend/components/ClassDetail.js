@@ -54,12 +54,12 @@ class ClassDetail extends Component {
     }
 
     _refetch = async () => {
-        //const _classIndex = this.props.navigation.getParam('classIndex')
-        // console.log("Old state:")
-        // console.log(this.props.all[_classIndex].folders)
+        const _classIndex = this.props.navigation.getParam('classIndex')
+        console.log("Old state:")
+        console.log(this.props.all[_classIndex].folders)
         await this.props.fetchAll()
-        // console.log("New state:")
-        // console.log(this.props.all[_classIndex].folders)
+        console.log("New state:")
+        console.log(this.props.all[_classIndex].folders)
     }
 
     renderSeparator = () => {
@@ -94,14 +94,15 @@ class ClassDetail extends Component {
                     data={this.props.all[_classIndex].folders}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
+                            key={index}
                             onPress={() => {
                                 console.log(index);
-                                console.log("HUHU " + _folders[index]._id)
+                                console.log("HUHU " + JSON.stringify(this.props.all[_classIndex].folders[index]))
                                 navigation.navigate('Folder', {
                                     _folders,
                                     _classIndex,
                                     _foldersIndex: index,
-                                    _foldersID: _folders[index]._id
+                                    _foldersID: this.props.all[_classIndex].folders[index]._id
                                 });
                             }}
                         >
@@ -111,6 +112,8 @@ class ClassDetail extends Component {
                         </TouchableOpacity>
                     )}
                     ItemSeparatorComponent={this.renderSeparator}
+                    // VirtualizeList
+                    keyExtractor={(item, index) => index.toString()}
                 />
             </View>
         );

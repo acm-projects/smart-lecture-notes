@@ -94,6 +94,9 @@ class FolderDetail extends Component {
                         </TouchableOpacity>
                     )}
                     ItemSeparatorComponent={this.renderSeparator}
+
+                    // Virtualize list
+                    keyExtractor={(item, index) => index.toString()}
                 />
             </View>
         );

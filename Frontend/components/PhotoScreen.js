@@ -60,20 +60,16 @@ class PhotoScreen extends Component {
     };
 
     _createDocument = async () => {
-        console.log('YOUR BOY');
-        console.log(this.state.title);
-        console.log(this.state.desc);
-        console.log(this.state.tags.join(' '));
-        console.log(this.props.navigation.getParam('photo').uri);
 
         const foldersID = this.props.navigation.getParam('_foldersID')
+        const base64PathImage = `data:image/png;base64,${this.props.navigation.getParam('photo').base64}`
         var formData = new FormData();
 
         formData.append('title', this.state.title)
         formData.append('desc', this.state.desc)
         formData.append('content', 'whatever')
         formData.append('tags', this.state.tags.join(' '))
-        formData.append('image', this.props.navigation.getParam('photo').uri);
+        formData.append('image', base64PathImage);
 
         console.log("FORM DATA IS")
         console.log(formData)
@@ -84,6 +80,7 @@ class PhotoScreen extends Component {
                 }
             });
             await this.props.fetchAll()
+            this.props.navigation.pop(2)
         } catch (err) {
             console.log(err)
         }
@@ -107,7 +104,7 @@ class PhotoScreen extends Component {
                         style={styles.nextButton}
                         onPress={() => this._createDocument()}
                     >
-                        <Text style={styles.nextButtonText}>Next</Text>
+                        <Text style={styles.nextButtonText}>Create</Text>
                     </TouchableOpacity>
                 </View>
                 <TextInput

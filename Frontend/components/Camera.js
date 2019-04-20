@@ -20,7 +20,7 @@ class CameraScreen extends Component {
     _snap = async () => {
         console.log('TEST');
         if (this.camera) {
-            let photo = await this.camera.takePictureAsync();
+            let photo = await this.camera.takePictureAsync({ base64: true });
             await this.setState({ photo: photo });
 
             // var file = this._dataURItoBlob(photo.uri);
@@ -48,7 +48,9 @@ class CameraScreen extends Component {
         await this.setState({ photo: photo });
 
         this.props.navigation.navigate('Photo', {
-            photo: this.state.photo
+            photo: this.state.photo,
+            _foldersIndex: this.props.navigation.getParam('_foldersIndex'),
+            _foldersID: this.props.navigation.getParam('_foldersID'),
         });
     };
 
