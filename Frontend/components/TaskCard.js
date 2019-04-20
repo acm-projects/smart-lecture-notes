@@ -46,7 +46,7 @@ class TaskCard extends Component {
                                     color: 'grey',
                                     textDecorationLine: 'line-through'
                                 }
-                                : { color: 'black' }
+                                : { color: '#3c4560' }
                         ]}
                     >
                         {text}
@@ -104,7 +104,9 @@ const styles = StyleSheet.create({
     //     //backgroundColor: 'green'
     // }
     container: {
-        width: width - 50,
+        //width: width - 50,
+        marginRight: 30,
+        marginLeft: 20,
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderRadius: 5,
@@ -118,12 +120,13 @@ const styles = StyleSheet.create({
       column: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: width / 1.5
+        //width: width / 1.5
       },
       text: {
-        fontWeight: '500',
-        fontSize: 16,
+        fontWeight: '600',
+        fontSize: 19,
         marginVertical: 15,
+        marginLeft: 5,
         fontFamily: 'Avenir Next',
       },
       circle: {

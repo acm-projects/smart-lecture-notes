@@ -50,9 +50,9 @@ class ClassesScreen extends Component {
 					{/* !Post Call */}
 
 					<View style={styles.titleBar}>
-						<Image style={styles.avatar} source={require('../../assets/huy.jpg')} />
-						<Text style={styles.name}>Huy Pham</Text>
-						<Text style={styles.title}>@huypham50</Text>
+						<Image style={styles.avatar} source={require('../../assets/temoc.jpg')} />
+						<Text style={styles.name}>Temoc</Text>
+						<Text style={styles.title}>@comet</Text>
 					</View>
 					<View style={{ marginTop: 30 }}>
 						<TouchableOpacity

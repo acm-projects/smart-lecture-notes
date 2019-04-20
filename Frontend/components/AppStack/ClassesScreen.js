@@ -37,40 +37,16 @@ class ClassesScreen extends Component {
                     <View style={styles.titleBar}>
                         <Image
                             style={styles.avatar}
-                            source={require('../../assets/huy.jpg')}
+                            source={require('../../assets/temoc.jpg')}
                         />
                         <Text style={styles.title}>Welcome back,</Text>
-                        <Text style={styles.name}>Huy Pham</Text>
+                        <Text style={styles.name}>Temoc</Text>
                     </View>
 
                     <Text style={styles.subTitle}>Your classes</Text>
 
                     <SafeAreaView style={styles.classes}>
-                        {/* <ListCard
-                            title="CS2336"
-                            color="#E8384F"
-                            desc="Introduction to Computer Science 2"
-                        />
-                        <ListCard
-                            title="CS2305"
-                            color="#FD612C"
-                            desc="Discrete Mathematics"
-                        />
-                        <ListCard
-                            title="MATH2418"
-                            color="#A4CF30"
-                            desc="Linear Algebra"
-                        />
-                        <ListCard
-                            title="MATH2419"
-                            color="#62D26F"
-                            desc="Calculus 2"
-                        />
-                        <ListCard
-                            title="PHIL1301"
-                            color="#4186E0"
-                            desc="Intro to Philosophy"
-                        /> */}
+
                         {this.props.all.map(function(post, i) {
                             return (
                                 <ListCard

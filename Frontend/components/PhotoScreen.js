@@ -64,8 +64,7 @@ class PhotoScreen extends Component {
         console.log(this.state.title);
         console.log(this.state.desc);
         console.log(this.state.tags.join(' '));
-        console.log(this.props.navigation.getParam('photo', null));
-        console.log(this.props.navigation.getParam('_foldersID'))
+        console.log(this.props.navigation.getParam('photo').uri);
 
         const foldersID = this.props.navigation.getParam('_foldersID')
         var formData = new FormData();
@@ -74,7 +73,10 @@ class PhotoScreen extends Component {
         formData.append('desc', this.state.desc)
         formData.append('content', 'whatever')
         formData.append('tags', this.state.tags.join(' '))
-        formData.append('image', this.props.navigation.getParam('photo', null).uri);
+        formData.append('image', this.props.navigation.getParam('photo').uri);
+
+        console.log("FORM DATA IS")
+        console.log(formData)
         try {
             await axios.post('http://127.0.0.1:8080/fileManage/addDocument/' + foldersID, formData, {
                 headers: {

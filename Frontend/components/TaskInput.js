@@ -20,13 +20,15 @@ const TaskInput = ({ inputValue, onChangeText, onDoneAddItem }) => (
   );
   const styles = StyleSheet.create({
     input: {
-      paddingTop: 10,
+      //paddingTop: 10,
       paddingRight: 15,
       paddingLeft: 15,
       fontSize: 20,
       color: 'black',
       fontWeight: '600',
       fontFamily: 'Avenir Next',
+
+      marginLeft: 20,
     }
   });
   export default TaskInput;

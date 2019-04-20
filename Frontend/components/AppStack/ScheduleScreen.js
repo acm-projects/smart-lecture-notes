@@ -145,76 +145,75 @@ export default class ScheduleScreen extends Component {
         const { inputValue, loadingItems, allItems } = this.state;
 
         return (
-            <SafeAreaView style={{ flex: 1 }}>
-                {/* <View style={styles.container2}>
+            <View style={styles.container}>
+                <ScrollView
+                    style={styles.container}
+                    showsVerticalScrollIndicator={false}
+                >
                     <View style={styles.titleBar}>
                         <Image
                             style={styles.avatar}
-                            source={require('../../assets/huy.jpg')}
+                            source={require('../../assets/temoc.jpg')}
                         />
                         <Text style={styles.title}>Welcome back,</Text>
-                        <Text style={styles.name}>Huy Pham</Text>
+                        <Text style={styles.name2}>Temoc</Text>
                     </View>
-                    <View style={styles.contentBar}>
-                        <FrontCard
-                            title="New Note"
-                            color="#62D26F"
-                            desc="Open Camera"
-                            destination="Camera"
-                        />
-                        <FrontCard
-                            title="To Do List"
-                            color="#A4CF30"
-                            desc="Finish it!"
-                            destination="Detail"
-                        />
-                    </View>
-                </View> */}
-                <View style={styles.container}>
-                    <View style={styles.headerContainer}>
-                        <Text style={styles.headerText}>Your To Do List:</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.searchContainer}>
-                            <TaskInput
-                                inputValue={inputValue}
-                                onChangeText={this.newInputValue}
-                                onDoneAddItem={this.onDoneAddItem}
-                            />
-                        </View>
-                    </View>
+
                     <View style={styles.container}>
-                        <View style={styles.list}>
-                            <View style={styles.column}>
-                                <Text style={styles.name}>RECENT TASKS</Text>
+                        <View style={styles.headerContainer}>
+                            <Text style={styles.headerText}>
+                                Your To Do List:
+                            </Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.searchContainer}>
+                                <TaskInput
+                                    inputValue={inputValue}
+                                    onChangeText={this.newInputValue}
+                                    onDoneAddItem={this.onDoneAddItem}
+                                />
                             </View>
-                            {loadingItems ? (
-                                <ScrollView
-                                    contentContainerStyle={
-                                        styles.scrollableList
-                                    }
-                                >
-                                    {Object.values(allItems)
-                                        .reverse()
-                                        .map(item => (
-                                            <TaskCard
-                                                key={item.id}
-                                                {...item}
-                                                deleteItem={this.deleteItem}
-                                                completeItem={this.completeItem}
-                                                incompleteItem={
-                                                    this.incompleteItem
-                                                }
-                                            />
-                                        ))}
-                                </ScrollView>
-                            ) : (
-                                <ActivityIndicator size="large" color="white" />
-                            )}
+                        </View>
+                        <View style={styles.container}>
+                            <View style={styles.list}>
+                                <View style={styles.column}>
+                                    <Text style={styles.name}>
+                                        RECENT TASKS
+                                    </Text>
+                                </View>
+                                {loadingItems ? (
+                                    <ScrollView
+                                        contentContainerStyle={
+                                            styles.scrollableList
+                                        }
+                                    >
+                                        {Object.values(allItems)
+                                            .reverse()
+                                            .map(item => (
+                                                <TaskCard
+                                                    key={item.id}
+                                                    {...item}
+                                                    deleteItem={this.deleteItem}
+                                                    completeItem={
+                                                        this.completeItem
+                                                    }
+                                                    incompleteItem={
+                                                        this.incompleteItem
+                                                    }
+                                                />
+                                            ))}
+                                    </ScrollView>
+                                ) : (
+                                    <ActivityIndicator
+                                        size="large"
+                                        color="white"
+                                    />
+                                )}
+                            </View>
                         </View>
                     </View>
-                </View>
-            </SafeAreaView>
+                </ScrollView>
+            </View>
         );
     }
 }
@@ -232,12 +231,15 @@ const styles = StyleSheet.create({
         paddingLeft: 13,
         justifyContent: 'center',
         alignContent: 'center',
-        marginTop: 40
+        marginTop: 15,
+        marginBottom: -15
     },
     headerText: {
         fontFamily: 'Avenir Next',
         fontSize: 26,
-        fontWeight: '700'
+        fontWeight: '700',
+        color: '#3c4560',
+        marginLeft: 20,
     },
     searchBar: {
         height: 40,
@@ -262,7 +264,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     container2: {
-        flex: 1,
+        //flex: 1,
+        marginTop: 0,
         backgroundColor: 'rgb(255, 255, 255)'
     },
     avatar: {
@@ -290,7 +293,15 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Avenir Next',
         color: '#b8bece',
-        fontWeight: '600'
+        fontWeight: '600',
+        marginLeft: 20
+    },
+    name2: {
+        fontSize: 20,
+        fontFamily: 'Avenir Next',
+        color: '#3c4560',
+        fontWeight: '700',
+        marginTop: -3
     },
     contentBar: {
         alignItems: 'center'
@@ -308,7 +319,8 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     scrollableList: {
-        marginTop: 15
+        marginTop: 5,
+        marginRight: 15
     },
     column: {
         flexDirection: 'row',

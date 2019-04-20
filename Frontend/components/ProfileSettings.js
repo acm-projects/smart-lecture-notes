@@ -16,9 +16,9 @@ class ProfileSettings extends Component {
      constructor(props) {
           super(props);
           this.state = {
-               nameValue: 'Huy Pham',
-               usernameValue: '@huypham50',
-               emailValue: 'testEmail@gmail.com'
+               nameValue: 'Temoc',
+               usernameValue: '@comet',
+               emailValue: 'comet@utdallas.edu'
           };
      }
 
@@ -29,7 +29,7 @@ class ProfileSettings extends Component {
           return (
                <View style={styles.container}>
                     <View style={styles.titleBar}>
-                         <Image style={styles.avatar} source={require('../assets/huy.jpg')} />
+                         <Image style={styles.avatar} source={require('../assets/temoc.jpg')} />
                          <View style={styles.editLineContainer}>
                               <Text style={styles.name}>Name</Text>
                               <TextInput
