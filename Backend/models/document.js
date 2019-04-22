@@ -9,7 +9,7 @@ const documentSchema = new mongoose.Schema({
     title: String,
     desc: String,
     content: String,
-    image: Buffer,
+    image: {type:Schema.Types.ObjectId, ref:'image'},
     tags: []
 
 

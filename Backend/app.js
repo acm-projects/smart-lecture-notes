@@ -9,6 +9,10 @@ const processImage = require('./routers/processImage');
 const userHandler = require('./routers/userHandler');
 const mongoose = require('mongoose');
 
+const cors = require('cors');
+
+
+
 const uri = 'mongodb://localhost:27017/folders';
 
 mongoose.connect(uri,{
@@ -19,7 +23,7 @@ mongoose.connect(uri,{
 app.use('/user',userHandler);
 app.use('/fileManage',fileManager);
 app.use('/processImage',processImage);
-
+app.use(cors);
 
 
 // Start the server
