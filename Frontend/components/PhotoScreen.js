@@ -63,11 +63,30 @@ class PhotoScreen extends Component {
 
         const foldersID = this.props.navigation.getParam('_foldersID')
         const base64PathImage = `data:image/png;base64,${this.props.navigation.getParam('photo').base64}`
+        
+        var imagePost = new FormData();
+
+        imagePost.append('image', base64PathImage);
+
+        var imageText;
+
+        await axios.post('http://127.0.0.1:8080/processImage',imagePost,{
+
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+
+        }).then( res => {
+            imageText = res.data;
+            
+        })
+        
+
         var formData = new FormData();
 
         formData.append('title', this.state.title)
         formData.append('desc', this.state.desc)
-        formData.append('content', 'whatever')
+        formData.append('content', imageText)
         formData.append('tags', this.state.tags.join(' '))
         formData.append('image', base64PathImage);
 

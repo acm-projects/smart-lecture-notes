@@ -17,7 +17,7 @@ class ClassesScreen extends Component {
         header: null
     };
 
-    componentDidMount() {
+    /*componentDidMount() {
         console.log("BEFORE");
         console.log(this.props.all[2]);
         console.log(this.props.all[2].name)
@@ -25,7 +25,7 @@ class ClassesScreen extends Component {
             console.log(`${i} ${post.name}`)
         })
         console.log("AFTER");
-    }
+    }*/
 
     render() {
         return (
