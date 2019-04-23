@@ -28,6 +28,7 @@ import TaskDetail from './components/TaskDetail';
 import AgendaScreen from './components/AgendaScreen';
 import NewTask from './components/NewTask';
 import EditTaskDetail from './components/EditTaskDetail';
+import SearchResults from './components/SearchResults';
 
 import ProfileSettings from './components/ProfileSettings'
 
@@ -106,6 +107,9 @@ const ClassesStack = createStackNavigator({
     Photo: {
         screen: PhotoScreen,
     },
+    SearchResults: {
+        screen: SearchResults
+    }
 })
 
 ClassesStack.navigationOptions = ({ navigation }) => {

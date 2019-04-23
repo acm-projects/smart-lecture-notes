@@ -12,8 +12,15 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { fetchAll } from '../actions';
+import axios from 'axios';
 
 class FolderDetail extends Component {
+
+    state = {
+        text: "",
+        documents : []
+    };
+
     static navigationOptions = ({ navigation }) => {
         return {
             title: navigation.getParam('title', ''),
@@ -47,11 +54,59 @@ class FolderDetail extends Component {
         );
     };
 
+    
+
+    async search() {
+        
+        
+        const { navigation } = this.props;
+
+        const _classIndex = navigation.getParam('_classIndex');
+        const _foldersIndex = navigation.getParam('_foldersIndex');
+        
+        let docArray = this.props.all[_classIndex].folders[_foldersIndex].documents;
+       
+       
+
+        if (this.state.text != "") {
+
+            let url = 'http://127.0.0.1:8080/fileMange/textSearch';
+            url += this.state.text;
+
+            await axios.post(url, {
+
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(docs => {
+
+                docArray = docs;
+
+               
+            })
+
+            
+        }
+      
+            console.log(docArray, "<<<<<< This is ours");
+            return{docArray}
+       
+    }
+
+    
+
+
+
+
+
+
     render() {
         const { navigation } = this.props;
 
         const _classIndex = navigation.getParam('_classIndex');
         const _foldersIndex = navigation.getParam('_foldersIndex');
+
+
 
         const imageUrl = 'http://127.0.0.1:8080/fileManage/image/';
 
@@ -65,17 +120,16 @@ class FolderDetail extends Component {
             <View style={styles.container}>
                 <TextInput
                     style={styles.searchBar}
-                    // value={this.state.searchText}
-                    // onChange={this.setSearchText.bind(this)}
-                    placeholder="Search State"
+                    placeholder='Search State'
+                    onChangeText={
+                        (text) => this.setState({ text, documents : this.search() })
+                    }
+                    value={this.state.text}
                 />
 
                 <FlatList
                     style={styles.listContainer}
-                    data={
-                        this.props.all[_classIndex].folders[_foldersIndex]
-                            .documents
-                    }
+                    data={this.state.documents}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             key={index}
