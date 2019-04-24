@@ -78,9 +78,9 @@ class FolderDetail extends Component {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(docs => {
+            }).then(response => {
 
-                docArray = docs;
+                docArray = response.data;
 
                
             })
