@@ -39,10 +39,11 @@ class FolderDetail extends Component {
         if (text != '') {
             console.log("Start " + text)
             const response = await axios.post('http://127.0.0.1:8080/fileManage/textSearch/' + text)
-            this.setState({data: response.data})
-            console.log(response.data) 
+            this.setState({ data: response.data })
+            //console.log(response.data) 
             console.log("Finish")
         } else {
+            this.setState({ data: [] })
             console.log("EMPTY DOG")
         }
     }

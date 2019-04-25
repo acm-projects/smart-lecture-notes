@@ -61,7 +61,7 @@ class ClassesScreen extends Component {
                         style={styles.search}
                         title="Search Documents"
                         desc="Look for your notes"
-                        color="red"  
+                        color="#E8384F"  
                         destination="Search"  
                     />
 

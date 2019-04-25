@@ -50,6 +50,8 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: 'black',
         shadowOffset: { height: 2, width: 2 },
+
+        marginLeft: _margin
     },
     cover: {},
     title: {
