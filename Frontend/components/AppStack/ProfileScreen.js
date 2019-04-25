@@ -12,6 +12,8 @@ import {
 
 import { Ionicons } from '@expo/vector-icons';
 
+import Search from '../Search';
+
 // import OrderHistory from './OrderHistory'
 // import Schedule from './Schedule'
 
@@ -54,7 +56,16 @@ class ClassesScreen extends Component {
 						<Text style={styles.name}>Temoc</Text>
 						<Text style={styles.title}>@comet</Text>
 					</View>
-					<View style={{ marginTop: 30 }}>
+
+                    <Search 
+                        style={styles.search}
+                        title="Search Documents"
+                        desc="Look for your notes"
+                        color="red"  
+                        destination="Search"  
+                    />
+
+					<View style={{ marginTop: 30, marginRight: 30, marginLeft: 30 }}>
 						<TouchableOpacity
 							style={styles.button}
 							onPress={() => navigate('Login')}>
@@ -161,5 +172,9 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontFamily: 'Avenir Next',
 		fontWeight: '500'
-	}
+    }, 
+    search: {
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 });

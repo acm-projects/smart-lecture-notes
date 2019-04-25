@@ -36,6 +36,8 @@ import SplashScreen from './components/SplashScreen';
 import SignUpScreen from './components/SignUpScreen';
 import WalkthroughScreen from './components/WalkthroughScreen';
 
+import SearchScreen from './components/SearchScreen'
+
 const AuthStack = createStackNavigator({
     Login: {
         screen: LoginScreen
@@ -126,6 +128,9 @@ const ProfileStack = createStackNavigator({
     Settings: {
         screen: ProfileSettings,
     },
+    Search: {
+        screen: SearchScreen,
+    }
 })
 
 const AppStack = createBottomTabNavigator({
