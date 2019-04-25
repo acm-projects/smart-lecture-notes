@@ -79,10 +79,10 @@ class NewClass extends Component {
                 >
                     <View>
                         <Text style={styles.demoTitle}>
-                            {this.state.title || 'Course Number'}
+                            {this.state.desc || 'Course Number'}
                         </Text>
                         <Text style={styles.demoDesc}>
-                            {this.state.desc || 'Course Description'}
+                            {this.state.title || 'Course Description'}
                         </Text>
                     </View>
                 </TouchableOpacity>
@@ -90,8 +90,8 @@ class NewClass extends Component {
                 <TextInput
                     style={styles.titleInput}
                     placeholder="Title"
-                    onChangeText={title => this.setState({ title })}
-                    value={this.state.title}
+                    onChangeText={desc => this.setState({ desc })}
+                    value={this.state.desc}
                     returnKeyType="next"
                     onSubmitEditing={() => {
                         this.secondTextInput.focus();
@@ -114,8 +114,8 @@ class NewClass extends Component {
                     }}
                     style={styles.descInput}
                     placeholder="Description"
-                    onChangeText={desc => this.setState({ desc })}
-                    value={this.state.desc}
+                    onChangeText={title => this.setState({ title })}
+                    value={this.state.title}
                     //multiline={true}
                 />
 

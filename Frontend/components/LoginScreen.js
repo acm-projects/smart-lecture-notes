@@ -45,9 +45,10 @@ class LoginScreen extends Component {
                     <View style={styles.inputs}>
                         <TextInput
                             style={styles.titleInput}
-                            placeholder="Email"
+                            //placeholder="Email"
+                            placeholder="Username"
                             placeholderTextColor='grey'
-                            keyboardType='email-address'
+                            //keyboardType='email-address'
                             returnKeyType="next"
                             onSubmitEditing={() => this.passwordInput.focus()}
                             autoCapitalize="none"

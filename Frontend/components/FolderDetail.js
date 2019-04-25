@@ -6,12 +6,21 @@ import {
     TextInput,
     View,
     TouchableOpacity,
-    Image
+    Image,
+    Modal
 } from 'react-native';
+
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { fetchAll } from '../actions';
+
+const images = [
+    {
+        url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460'
+    }
+];
 
 class FolderDetail extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -47,6 +56,10 @@ class FolderDetail extends Component {
         );
     };
 
+    state = {
+        visible: false,
+    };
+
     render() {
         const { navigation } = this.props;
 
@@ -70,6 +83,56 @@ class FolderDetail extends Component {
                     placeholder="Search State"
                 />
 
+                <Modal visible={this.state.visible} transparent={true}>
+                    <ImageViewer
+                        imageUrls={this.state.images}
+                        renderFooter={() => {
+                            return (
+                                <View>
+                                    <Text
+                                        style={{
+                                            fontFamily: 'Avenir Next',
+                                            fontWeight: '500',
+                                            color: 'white'
+                                        }}
+                                    >
+                                        {this.state.content}
+                                    </Text>
+                                </View>
+                            );
+                        }}
+                        footerContainerStyle={{
+                            bottom: 30,
+                            position: 'absolute',
+                            left: 20,
+                            height: 150,
+                        }}
+                        onDoubleClick={() => {
+                            this.setState({visible: false})
+                        }}
+                        renderHeader={() => {
+                            return (
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        this.setState({ visible: false });
+                                    }}
+                                >
+                                    <Image
+                                        style={{
+                                            position: 'absolute',
+                                            top: 50,
+                                            left: 30,
+                                            height: 30,
+                                            width: 30
+                                        }}
+                                        source={require('../assets/back.png')}
+                                    />
+                                </TouchableOpacity>
+                            );
+                        }}
+                    />
+                </Modal>
+
                 <FlatList
                     style={styles.listContainer}
                     data={
@@ -83,6 +146,15 @@ class FolderDetail extends Component {
                                 console.log('DATA IS ________');
                                 console.log(item);
                                 console.log(imageUrl + item.image);
+                                this.setState({
+                                    visible: true,
+                                    images: [
+                                        {
+                                            url: imageUrl + item.image
+                                        }
+                                    ],
+                                    content: item.content
+                                });
                             }}
                         >
                             <Image
@@ -94,7 +166,6 @@ class FolderDetail extends Component {
                         </TouchableOpacity>
                     )}
                     ItemSeparatorComponent={this.renderSeparator}
-
                     // Virtualize list
                     keyExtractor={(item, index) => index.toString()}
                 />
