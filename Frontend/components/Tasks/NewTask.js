@@ -6,7 +6,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     KeyboardAvoidingView,
-    TextInput,
+    TextInput
 } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 

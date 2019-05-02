@@ -5,18 +5,12 @@ import {
     View,
     Image,
     ScrollView,
-    TouchableOpacity,
-    SegmentedControlIOS,
-    SafeAreaView,
-    Button
+    TouchableOpacity
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
 import Search from '../Profile/Search';
-
-// import OrderHistory from './OrderHistory'
-// import Schedule from './Schedule'
 
 class ClassesScreen extends Component {
     static navigationOptions = ({ navigation }) => {
