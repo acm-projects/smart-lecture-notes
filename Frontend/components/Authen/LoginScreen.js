@@ -10,29 +10,28 @@ import {
     Button
 } from 'react-native';
 
-import {
-    connect
-} from  'react-redux'
+import { connect } from 'react-redux';
 
-import { fetchAll } from '../actions';
+import { fetchAll } from '../../actions';
 
 class LoginScreen extends Component {
-
     static navigationOptions = {
         header: null
-    }
+    };
 
     componentDidMount() {
         this.props.fetchAll();
     }
 
     render() {
-
         const { navigate } = this.props.navigation;
 
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                <KeyboardAvoidingView behavior="padding" style={styles.container}>
+                <KeyboardAvoidingView
+                    behavior="padding"
+                    style={styles.container}
+                >
                     <View style={styles.logoContainer}>
                         <Text style={styles.logoGreeting}>
                             Welcome to Skribe.
@@ -47,7 +46,7 @@ class LoginScreen extends Component {
                             style={styles.titleInput}
                             //placeholder="Email"
                             placeholder="Username"
-                            placeholderTextColor='grey'
+                            placeholderTextColor="grey"
                             //keyboardType='email-address'
                             returnKeyType="next"
                             onSubmitEditing={() => this.passwordInput.focus()}
@@ -59,10 +58,10 @@ class LoginScreen extends Component {
                         <TextInput
                             style={styles.titleInput}
                             placeholder="Password"
-                            placeholderTextColor='grey'
+                            placeholderTextColor="grey"
                             returnKeyType="go"
                             secureTextEntry
-                            ref={(input) => this.passwordInput = input}
+                            ref={input => (this.passwordInput = input)}
                             blurOnSubmit={false}
                             autoFocus={true}
                         />
@@ -99,33 +98,33 @@ class LoginScreen extends Component {
                             <TouchableOpacity
                                 style={styles.loginButton}
                                 onPress={() => {
-                                    console.log(this.props.all)
+                                    console.log(this.props.all);
                                     // console.log("before")
                                     // console.log(this.props.all[0].name)
                                     // console.log("after")
-                                    navigate('Classes')
-                                }}>
+                                    navigate('Classes');
+                                }}
+                            >
                                 <Text style={styles.buttonText}>Lets go!</Text>
                             </TouchableOpacity>
-                            <Text style={styles.signUpButtonText}>
-                                OR
-                            </Text>
+                            <Text style={styles.signUpButtonText}>OR</Text>
                             <TouchableOpacity
                                 style={styles.signUpButton}
-                                onPress={() => navigate('Walkthrough')}>
+                                onPress={() => navigate('Walkthrough')}
+                            >
                                 <Text style={styles.buttonText}>Sign up!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </KeyboardAvoidingView>
             </SafeAreaView>
-        )
+        );
     }
 }
 
 //export default LoginScreen;
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     all: state.all
 });
 
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'Avenir Next',
         fontWeight: '500',
-        marginLeft: 5,
+        marginLeft: 5
     },
     input: {
         height: 40,
@@ -176,7 +175,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         marginLeft: 5,
         marginRight: 5
-
     },
     inputs: {
         marginTop: 40
@@ -220,7 +218,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         marginBottom: 10,
         color: 'grey'
-
     },
     titleInput: {
         height: 40,
@@ -229,5 +226,5 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 20,
         marginVertical: 10
-    },
-})
+    }
+});

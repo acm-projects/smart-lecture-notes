@@ -1,31 +1,44 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
     View,
     Dimensions,
-    TouchableOpacity,
-} from 'react-native'
+    TouchableOpacity
+} from 'react-native';
 
-import { withNavigation } from 'react-navigation'
+import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 
-const _margin = 30
-const _borderRadius = 8
-const _width = Dimensions.get('window').width - _margin * 2
-const _height = 70
+const _margin = 30;
+const _borderRadius = 8;
+const _width = Dimensions.get('window').width - _margin * 2;
+const _height = 70;
 
-class FrontCard extends Component {
+class ListCard extends Component {
     render() {
-        const { title, color, desc, destination } = this.props
+        const {
+            title,
+            color,
+            desc,
+            key,
+            classIndex,
+            classID,
+            folders
+        } = this.props;
         return (
             <TouchableOpacity
                 style={[styles.container, { backgroundColor: color }]}
                 onPress={() => {
-                    this.props.navigation.navigate(destination, {
+                    this.props.navigation.navigate('Class', {
                         title,
                         color,
                         desc,
-                    })
+                        key,
+                        folders,
+                        classID,
+                        classIndex
+                    });
                 }}
             >
                 <View style={styles.cover}>
@@ -33,11 +46,16 @@ class FrontCard extends Component {
                     <Text style={styles.desc}>{desc}</Text>
                 </View>
             </TouchableOpacity>
-        )
+        );
     }
 }
 
-export default withNavigation(FrontCard)
+const mapStateToProps = state => ({
+    all: state.all
+});
+
+//export default withNavigation(ListCard)
+export default withNavigation(connect(mapStateToProps)(ListCard));
 
 const styles = StyleSheet.create({
     container: {
@@ -49,7 +67,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.125,
         shadowRadius: 5,
         shadowColor: 'black',
-        shadowOffset: { height: 2, width: 2 },
+        shadowOffset: { height: 2, width: 2 }
     },
     cover: {},
     title: {
@@ -58,7 +76,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '600',
         margin: 10,
-        marginBottom: 0,
+        marginBottom: 0
     },
     desc: {
         fontSize: 14,
@@ -66,6 +84,6 @@ const styles = StyleSheet.create({
         color: 'white',
         marginLeft: 10,
         marginRight: 10,
-        fontWeight: '600',
-    },
-})
+        fontWeight: '600'
+    }
+});

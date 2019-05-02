@@ -10,81 +10,106 @@ import {
     Image,
     Dimensions
 } from 'react-native';
-const _width = Dimensions.get("window").width 
+const _width = Dimensions.get('window').width;
 
 class WalkthroughScreen extends Component {
-
     static navigationOptions = {
         header: null
-    }
+    };
 
     render() {
-
         const { navigate } = this.props.navigation;
 
         return (
-
             <SafeAreaView style={styles.container}>
-                <View style={{ height: 375, marginTop: 150}}>
-
-                {/* frame view */}
+                <View style={{ height: 375, marginTop: 150 }}>
+                    {/* frame view */}
 
                     <ScrollView
                         horizontal={true}
                         pagingEnabled={true}
                         showsHorizontalScrollIndicator={false}
                     >
-
-                    {/* frame one */}
+                        {/* frame one */}
 
                         <View style={styles.frame}>
                             <View style={styles.textContainer}>
                                 <Text style={styles.greetingText}>
-                                Welcome to the future of note taking.
+                                    Welcome to the future of note taking.
                                 </Text>
                             </View>
                             <View style={styles.imageContainer}>
-                                <Image style={styles.iconImage} source={require('../assets/frame1.png')} />
+                                <Image
+                                    style={styles.iconImage}
+                                    source={require('../../assets/frame1.png')}
+                                />
                             </View>
-                            <View style={{ flex: 1, alignItems: 'center', paddingTop: 10 }}>
+                            <View
+                                style={{
+                                    flex: 1,
+                                    alignItems: 'center',
+                                    paddingTop: 10
+                                }}
+                            >
                                 <Text style={styles.frameText}>
-                                    Scan your handwritten notes with easy access at any moment.
+                                    Scan your handwritten notes with easy access
+                                    at any moment.
                                 </Text>
                             </View>
                         </View>
 
-                    {/* frame two */}
+                        {/* frame two */}
 
                         <View style={styles.frame}>
                             <View style={styles.textContainer}>
                                 <Text style={styles.greetingText}>
-                                Getting started is easy!
+                                    Getting started is easy!
                                 </Text>
                             </View>
                             <View style={styles.imageContainer}>
-                                <Image style={styles.iconImage} source={require('../assets/frame2.png')} />
+                                <Image
+                                    style={styles.iconImage}
+                                    source={require('../../assets/frame2.png')}
+                                />
                             </View>
-                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10 }}>
+                            <View
+                                style={{
+                                    flex: 1,
+                                    paddingLeft: 10,
+                                    paddingTop: 10
+                                }}
+                            >
                                 <Text style={styles.frameText}>
-                                Simply take a picture of your notes and we'll process them for future use.
+                                    Simply take a picture of your notes and
+                                    we'll process them for future use.
                                 </Text>
                             </View>
                         </View>
 
-                    {/* frame three */}
+                        {/* frame three */}
 
                         <View style={styles.frame}>
                             <View style={styles.textContainer}>
                                 <Text style={styles.greetingText}>
-                                Browse your notes where ever you go.
+                                    Browse your notes where ever you go.
                                 </Text>
                             </View>
                             <View style={styles.imageContainer}>
-                                <Image style={styles.iconImage} source={require('../assets/frame3.png')} />
+                                <Image
+                                    style={styles.iconImage}
+                                    source={require('../../assets/frame3.png')}
+                                />
                             </View>
-                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10 }}>
+                            <View
+                                style={{
+                                    flex: 1,
+                                    paddingLeft: 10,
+                                    paddingTop: 10
+                                }}
+                            >
                                 <Text style={styles.frameText}>
-                                We'll use suggested tags and titles to help organize your notes!
+                                    We'll use suggested tags and titles to help
+                                    organize your notes!
                                 </Text>
                             </View>
                         </View>
@@ -93,17 +118,20 @@ class WalkthroughScreen extends Component {
                 <View style={{ paddingHorizontal: 20 }}>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => navigate('SignUp')}>
+                        onPress={() => navigate('SignUp')}
+                    >
                         <Text style={styles.buttonText}>Got it!</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={{flex: 3, paddingLeft: 35, paddingTop: 7}}>
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 3, paddingLeft: 35, paddingTop: 7 }}>
                         <Text style={styles.signUpButton}>
-                            Already have an account? - 
+                            Already have an account? -
                         </Text>
                     </View>
-                    <View style={{flex: 1, paddingRight: 45, paddingBottom: 3}}>
+                    <View
+                        style={{ flex: 1, paddingRight: 45, paddingBottom: 3 }}
+                    >
                         <Button
                             style={styles.signUpbutton}
                             title="Sign In"
@@ -148,7 +176,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         fontSize: 20,
-        fontFamily: 'Avenir Next',
+        fontFamily: 'Avenir Next'
     },
     signUpButton: {
         fontFamily: 'Avenir Next',
@@ -157,12 +185,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     textContainer: {
-        flex: 1, 
+        flex: 1,
         paddingTop: 25
     },
     imageContainer: {
         flex: 2,
-        alignItems: 'center', 
+        alignItems: 'center',
         justifyContent: 'center'
     },
     iconImage: {
@@ -172,15 +200,14 @@ const styles = StyleSheet.create({
         paddingVertical: 30
     },
     frame: {
-        height: 350, 
+        height: 350,
         width: _width
     },
-    frameText:
-    {
+    frameText: {
         fontSize: 18,
         fontWeight: '400',
         paddingHorizontal: 10,
         textAlign: 'center',
         justifyContent: 'center'
     }
-})
+});

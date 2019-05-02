@@ -1,50 +1,53 @@
 import React, { Component } from 'react';
 import {
-     SectionList, 
-     StyleSheet, 
-     Text,
-     TextInput,
-     View,
-     TouchableOpacity
+    SectionList,
+    StyleSheet,
+    Text,
+    TextInput,
+    View,
+    TouchableOpacity
 } from 'react-native';
 
 import { Entypo } from '@expo/vector-icons';
 
 class TaskDetail extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-             class: "",
-             notes: "",
-             date: ""
+            class: '',
+            notes: '',
+            date: ''
         };
-   }
+    }
 
     static navigationOptions = ({ navigation }) => {
         return {
-             title: navigation.getParam('taskName', ''),
-             headerRight: (
-                  <TouchableOpacity
-                       style={{paddingRight: 15, alignItems: 'center'}}
-                       onPress={() => {
-						navigation.navigate('EditTaskDetail')
-					}}
-                  >
-                       <Entypo name="dots-three-horizontal" color='#007AFF' size={20}/>
-                  </TouchableOpacity>
-             )
-        }
-   }
+            title: navigation.getParam('taskName', ''),
+            headerRight: (
+                <TouchableOpacity
+                    style={{ paddingRight: 15, alignItems: 'center' }}
+                    onPress={() => {
+                        navigation.navigate('EditTaskDetail');
+                    }}
+                >
+                    <Entypo
+                        name="dots-three-horizontal"
+                        color="#007AFF"
+                        size={20}
+                    />
+                </TouchableOpacity>
+            )
+        };
+    };
 
-    render () {
+    render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.headerText}>Class: {this.props.class}</Text>
                 <Text style={styles.headerText}>Date: {this.props.date}</Text>
                 <Text style={styles.headerText}>Notes: {this.props.notes}</Text>
             </View>
-        )
+        );
     }
 }
 
@@ -61,4 +64,4 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 26
     }
-})
+});

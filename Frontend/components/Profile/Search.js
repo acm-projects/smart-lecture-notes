@@ -1,36 +1,31 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
     View,
     Dimensions,
-    TouchableOpacity,
-} from 'react-native'
+    TouchableOpacity
+} from 'react-native';
 
-import { withNavigation } from 'react-navigation'
-import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
-const _margin = 30
-const _borderRadius = 8
-const _width = Dimensions.get('window').width - _margin * 2
-const _height = 70
+const _margin = 30;
+const _borderRadius = 8;
+const _width = Dimensions.get('window').width - _margin * 2;
+const _height = 70;
 
-class ListCard extends Component {
+class Search extends Component {
     render() {
-        const { title, color, desc, key, classIndex, classID, folders } = this.props
+        const { title, color, desc, destination } = this.props;
         return (
             <TouchableOpacity
                 style={[styles.container, { backgroundColor: color }]}
                 onPress={() => {
-                    this.props.navigation.navigate('Class', {
+                    this.props.navigation.navigate(destination, {
                         title,
                         color,
-                        desc,
-                        key,
-                        folders,
-                        classID,
-                        classIndex
-                    })
+                        desc
+                    });
                 }}
             >
                 <View style={styles.cover}>
@@ -38,18 +33,11 @@ class ListCard extends Component {
                     <Text style={styles.desc}>{desc}</Text>
                 </View>
             </TouchableOpacity>
-        )
+        );
     }
 }
 
-const mapStateToProps = (state) => ({
-    all: state.all
-})
-
-//export default withNavigation(ListCard)
-export default withNavigation(connect(
-    mapStateToProps
-  )(ListCard))
+export default withNavigation(Search);
 
 const styles = StyleSheet.create({
     container: {
@@ -62,6 +50,8 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: 'black',
         shadowOffset: { height: 2, width: 2 },
+
+        marginLeft: _margin
     },
     cover: {},
     title: {
@@ -70,7 +60,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '600',
         margin: 10,
-        marginBottom: 0,
+        marginBottom: 0
     },
     desc: {
         fontSize: 14,
@@ -78,6 +68,6 @@ const styles = StyleSheet.create({
         color: 'white',
         marginLeft: 10,
         marginRight: 10,
-        fontWeight: '600',
-    },
-})
+        fontWeight: '600'
+    }
+});

@@ -14,34 +14,10 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import { fetchAll } from '../actions';
-
-const images = [
-    {
-        url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460'
-    }
-];
+import { fetchAll } from '../../actions';
+import axios from 'axios';
 
 class FolderDetail extends Component {
-    static navigationOptions = ({ navigation }) => {
-        return {
-            title: navigation.getParam('title', ''),
-            headerRight: (
-                <TouchableOpacity
-                    style={{ paddingRight: 10 }}
-                    onPress={() => {
-                        navigation.navigate('Camera', {
-                            _foldersIndex: navigation.getParam('_foldersIndex'),
-                            _foldersID: navigation.getParam('_foldersID')
-                        });
-                    }}
-                >
-                    <Ionicons name="ios-add" color="#007AFF" size={36} />
-                </TouchableOpacity>
-            )
-        };
-    };
-
     renderSeparator = () => {
         return (
             <View
@@ -57,30 +33,43 @@ class FolderDetail extends Component {
     };
 
     state = {
-        visible: false,
+        searchText: '',
+        data: []
+    };
+
+    search = async text => {
+        if (text != '') {
+            console.log('Start ' + text);
+            const response = await axios.post(
+                'http://127.0.0.1:8080/fileManage/textSearch/' + text
+            );
+            this.setState({ data: response.data });
+            //console.log(response.data)
+            console.log('Finish');
+        } else {
+            this.setState({ data: [] });
+            console.log('EMPTY DOG');
+        }
+    };
+
+    state = {
+        visible: false
     };
 
     render() {
-        const { navigation } = this.props;
-
-        const _classIndex = navigation.getParam('_classIndex');
-        const _foldersIndex = navigation.getParam('_foldersIndex');
-
         const imageUrl = 'http://127.0.0.1:8080/fileManage/image/';
-
-        console.log('DATA IS ________');
-        console.log(_classIndex + ' ' + _foldersIndex);
-        console.log(
-            this.props.all[_classIndex].folders[_foldersIndex].documents
-        );
 
         return (
             <View style={styles.container}>
                 <TextInput
                     style={styles.searchBar}
-                    // value={this.state.searchText}
-                    // onChange={this.setSearchText.bind(this)}
+                    value={this.state.searchText}
+                    onChangeText={searchText => {
+                        this.setState({ searchText });
+                        this.search(searchText);
+                    }}
                     placeholder="Search State"
+                    autoCapitalize="none"
                 />
 
                 <Modal visible={this.state.visible} transparent={true}>
@@ -105,10 +94,10 @@ class FolderDetail extends Component {
                             bottom: 30,
                             position: 'absolute',
                             left: 20,
-                            height: 150,
+                            height: 150
                         }}
                         onDoubleClick={() => {
-                            this.setState({visible: false})
+                            this.setState({ visible: false });
                         }}
                         renderHeader={() => {
                             return (
@@ -125,7 +114,7 @@ class FolderDetail extends Component {
                                             height: 30,
                                             width: 30
                                         }}
-                                        source={require('../assets/back.png')}
+                                        source={require('../../assets/back.png')}
                                     />
                                 </TouchableOpacity>
                             );
@@ -135,10 +124,7 @@ class FolderDetail extends Component {
 
                 <FlatList
                     style={styles.listContainer}
-                    data={
-                        this.props.all[_classIndex].folders[_foldersIndex]
-                            .documents
-                    }
+                    data={this.state.data}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity
                             key={index}

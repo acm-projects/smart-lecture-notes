@@ -8,17 +8,14 @@ import {
     Platform
 } from 'react-native';
 const { height, width } = Dimensions.get('window');
-import { MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
-import TaskButton from './TaskButton'
+import { MaterialIcons } from '@expo/vector-icons';
 
 class TaskCard extends Component {
-
     onToggleCircle = () => {
         const { isCompleted, id, completeItem, incompleteItem } = this.props;
         if (isCompleted) {
             incompleteItem(id);
-        } 
-        else {
+        } else {
             completeItem(id);
         }
     };
@@ -43,9 +40,9 @@ class TaskCard extends Component {
                             styles.text,
                             isCompleted
                                 ? {
-                                    color: 'grey',
-                                    textDecorationLine: 'line-through'
-                                }
+                                      color: 'grey',
+                                      textDecorationLine: 'line-through'
+                                  }
                                 : { color: '#3c4560' }
                         ]}
                     >
@@ -58,13 +55,13 @@ class TaskCard extends Component {
                             <MaterialIcons
                                 name="delete-forever"
                                 size={24}
-                                color='grey'
+                                color="grey"
                             />
                         </TouchableOpacity>
                     </View>
                 ) : null}
             </View>
-        )
+        );
     }
 }
 
@@ -115,28 +112,28 @@ const styles = StyleSheet.create({
         height: width / 8 + 4,
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginVertical: 5,
-      },
-      column: {
+        marginVertical: 5
+    },
+    column: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center'
         //width: width / 1.5
-      },
-      text: {
+    },
+    text: {
         fontWeight: '600',
         fontSize: 19,
         marginVertical: 15,
         marginLeft: 5,
-        fontFamily: 'Avenir Next',
-      },
-      circle: {
+        fontFamily: 'Avenir Next'
+    },
+    circle: {
         width: 30,
         height: 30,
         borderRadius: 15,
         borderWidth: 3,
         margin: 10
-      },
-      button: {
+    },
+    button: {
         marginRight: 10
-      }
-})
+    }
+});

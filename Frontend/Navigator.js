@@ -1,6 +1,4 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Animated, Easing } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import {
@@ -14,25 +12,23 @@ import ScheduleScreen from './components/AppStack/ScheduleScreen';
 import ClassesScreen from './components/AppStack/ClassesScreen';
 import ProfileScreen from './components/AppStack/ProfileScreen';
 
-import PhotoScreen from './components/PhotoScreen';
-import Camera from './components/Camera';
+import PhotoScreen from './components/Classes/PhotoScreen';
+import Camera from './components/Classes/Camera';
+import NewClass from './components/Classes/NewClass';
+import ClassDetail from './components/Classes/ClassDetail';
+import FolderDetail from './components/Classes/FolderDetail';
 
-import NewClass from './components/NewClass';
-import ClassDetail from './components/ClassDetail';
-import FolderDetail from './components/FolderDetail';
-import TaskDetail from './components/TaskDetail';
-import AgendaScreen from './components/AgendaScreen';
-import NewTask from './components/NewTask';
-import EditTaskDetail from './components/EditTaskDetail';
+import TaskDetail from './components/Tasks/TaskDetail';
+import NewTask from './components/Tasks/NewTask';
+import EditTaskDetail from './components/Tasks/EditTaskDetail';
 
-import ProfileSettings from './components/ProfileSettings';
+import ProfileSettings from './components/Profile/ProfileSettings';
+import SearchScreen from './components/Profile/SearchScreen';
 
-import LoginScreen from './components/LoginScreen';
-import SplashScreen from './components/SplashScreen';
-import SignUpScreen from './components/SignUpScreen';
-import WalkthroughScreen from './components/WalkthroughScreen';
-
-import SearchScreen from './components/SearchScreen';
+import LoginScreen from './components/Authen/LoginScreen';
+import SplashScreen from './components/Authen/SplashScreen';
+import SignUpScreen from './components/Authen/SignUpScreen';
+import WalkthroughScreen from './components/Authen/WalkthroughScreen';
 
 const AuthStack = createStackNavigator(
     {
@@ -60,9 +56,6 @@ const ScheduleStack = createStackNavigator({
     },
     TaskDetail: {
         screen: TaskDetail
-    },
-    Agenda: {
-        screen: AgendaScreen
     },
     NewTask: {
         screen: NewTask

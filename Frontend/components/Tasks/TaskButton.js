@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-    StyleSheet,
-    View,
-    TouchableOpacity
-} from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 class TaskButton extends Component {
@@ -15,28 +11,35 @@ class TaskButton extends Component {
     onPress = () => {
         this.setState({
             isPressed: true
-        })
-    }
+        });
+    };
 
     undoOnPress = () => {
         this.setState({
             isPressed: false
-        })
-    }
+        });
+    };
 
     render() {
-        const { classColor } = this.props
+        const { classColor } = this.props;
         if (this.state.isPressed) {
             return (
                 <View style={styles.container}>
                     <TouchableOpacity
-                        style={[styles.completedButton, { backgroundColor: classColor }]}
+                        style={[
+                            styles.completedButton,
+                            { backgroundColor: classColor }
+                        ]}
                         onPress={this.undoOnPress}
                     >
-                        <Ionicons name="ios-checkmark" size={25} color="white" />
+                        <Ionicons
+                            name="ios-checkmark"
+                            size={25}
+                            color="white"
+                        />
                     </TouchableOpacity>
                 </View>
-            )
+            );
         }
         return (
             <View style={styles.container}>
@@ -45,7 +48,7 @@ class TaskButton extends Component {
                     onPress={this.onPress}
                 />
             </View>
-        )
+        );
     }
 }
 
@@ -70,4 +73,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     }
-})
+});

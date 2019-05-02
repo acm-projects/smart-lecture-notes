@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
     View,
-    Image,
     Text,
     TouchableOpacity,
     TextInput,
@@ -11,7 +10,7 @@ import {
 
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { fetchAll } from '../actions';
+import { fetchAll } from '../../actions';
 
 const _margin = 30;
 const _borderRadius = 8;

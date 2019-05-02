@@ -3,23 +3,17 @@ import {
     View,
     SafeAreaView,
     Text,
-    Image,
     StyleSheet,
     TouchableOpacity,
-    Button,
     KeyboardAvoidingView,
     TextInput,
-    ScrollView,
 } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 
-
 class NewTask extends Component {
-
-
     static navigationOptions = {
         header: null
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -28,11 +22,10 @@ class NewTask extends Component {
         };
         this.state = {
             PickerSelectedVal: 'Which class?'
-        }
+        };
     }
 
     render() {
-
         const { navigate } = this.props.navigation;
 
         return (
@@ -47,7 +40,7 @@ class NewTask extends Component {
                         </TouchableOpacity>
                         <Text style={styles.text}>What's your plan?</Text>
                     </View>
-                    <View style={{ marginHorizontal: 20}}>
+                    <View style={{ marginHorizontal: 20 }}>
                         <TextInput
                             style={styles.input}
                             placeholder="Task Name"
@@ -88,7 +81,7 @@ class NewTask extends Component {
                     </View>
                 </KeyboardAvoidingView>
             </SafeAreaView>
-        )
+        );
     }
 }
 
@@ -106,7 +99,7 @@ const styles = StyleSheet.create({
         marginLeft: 290,
         paddingTop: 15,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     text: {
         fontSize: 34,
@@ -152,5 +145,5 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 20,
         marginVertical: 10
-    },
-})
+    }
+});

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
-import { Camera, ImagePicker, Permissions, Svg } from 'expo';
-
-var { height, width } = Dimensions.get('window');
+import { Camera, ImagePicker, Permissions } from 'expo';
 
 class CameraScreen extends Component {
     state = {
@@ -30,7 +28,7 @@ class CameraScreen extends Component {
             this.props.navigation.navigate('Photo', {
                 photo: this.state.photo,
                 _foldersIndex: this.props.navigation.getParam('_foldersIndex'),
-                _foldersID: this.props.navigation.getParam('_foldersID'),
+                _foldersID: this.props.navigation.getParam('_foldersID')
             });
         } else {
             console.log('not a cam');
@@ -50,7 +48,7 @@ class CameraScreen extends Component {
         this.props.navigation.navigate('Photo', {
             photo: this.state.photo,
             _foldersIndex: this.props.navigation.getParam('_foldersIndex'),
-            _foldersID: this.props.navigation.getParam('_foldersID'),
+            _foldersID: this.props.navigation.getParam('_foldersID')
         });
     };
 
@@ -100,7 +98,7 @@ class CameraScreen extends Component {
                                         marginTop: 60,
                                         marginLeft: 30
                                     }}
-                                    source={require('../assets/back.png')}
+                                    source={require('../../assets/back.png')}
                                 />
                             </TouchableOpacity>
 
@@ -120,7 +118,7 @@ class CameraScreen extends Component {
                                         height: 40,
                                         width: 40
                                     }}
-                                    source={require('../assets/album.png')}
+                                    source={require('../../assets/album.png')}
                                 />
                             </TouchableOpacity>
 
@@ -142,7 +140,7 @@ class CameraScreen extends Component {
                                         height: 60,
                                         width: 60
                                     }}
-                                    source={require('../assets/snap.png')}
+                                    source={require('../../assets/snap.png')}
                                 />
                             </TouchableOpacity>
 
@@ -167,7 +165,7 @@ class CameraScreen extends Component {
                                         height: 40,
                                         width: 40
                                     }}
-                                    source={require('../assets/reverse.png')}
+                                    source={require('../../assets/reverse.png')}
                                 />
                             </TouchableOpacity>
                         </View>

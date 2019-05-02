@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
     View,
     Dimensions,
-    TouchableOpacity,
-} from 'react-native'
+    TouchableOpacity
+} from 'react-native';
 
-import { withNavigation } from 'react-navigation'
+import { withNavigation } from 'react-navigation';
 
-const _margin = 30
-const _borderRadius = 8
-const _width = Dimensions.get('window').width - _margin * 2
-const _height = 50
+const _margin = 30;
+const _borderRadius = 8;
+const _width = Dimensions.get('window').width - _margin * 2;
+const _height = 50;
 
 class NewCard extends Component {
     render() {
@@ -20,18 +20,18 @@ class NewCard extends Component {
             <TouchableOpacity
                 style={styles.container}
                 onPress={() => {
-                    this.props.navigation.navigate('NewClass')
+                    this.props.navigation.navigate('NewClass');
                 }}
             >
                 <View style={styles.cover}>
                     <Text style={styles.title}>New Class</Text>
                 </View>
             </TouchableOpacity>
-        )
+        );
     }
 }
 
-export default withNavigation(NewCard)
+export default withNavigation(NewCard);
 
 const styles = StyleSheet.create({
     container: {
@@ -57,5 +57,5 @@ const styles = StyleSheet.create({
         fontFamily: 'Avenir Next',
         color: '#4A5056',
         fontWeight: '600'
-    },
-})
+    }
+});

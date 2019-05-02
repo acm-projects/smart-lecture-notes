@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import {
     View,
@@ -14,7 +13,7 @@ import TagInput from 'react-native-tag-input';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { fetchAll } from '../actions'
+import { fetchAll } from '../../actions';
 
 const inputProps = {
     keyboardType: 'default',
@@ -61,48 +60,51 @@ class PhotoScreen extends Component {
     };
 
     _createDocument = async () => {
+        const foldersID = this.props.navigation.getParam('_foldersID');
+        const base64PathImage = `data:image/png;base64,${
+            this.props.navigation.getParam('photo').base64
+        }`;
 
-        const foldersID = this.props.navigation.getParam('_foldersID')
-        const base64PathImage = `data:image/png;base64,${this.props.navigation.getParam('photo').base64}`
-        
         var imagePost = new FormData();
 
         imagePost.append('image', base64PathImage);
 
         var imageText;
 
-        await axios.post('http://127.0.0.1:8080/processImage',imagePost,{
-
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-
-        }).then( res => {
-            imageText = res.data;
-            
-        })
-        
-
-        var formData = new FormData();
-
-        formData.append('title', this.state.title)
-        formData.append('desc', this.state.desc)
-        formData.append('content', imageText)
-        formData.append('tags', this.state.tags.join(' '))
-        formData.append('image', base64PathImage);
-
-        console.log("FORM DATA IS")
-        console.log(formData)
-        try {
-            await axios.post('http://127.0.0.1:8080/fileManage/addDocument/' + foldersID, formData, {
+        await axios
+            .post('http://127.0.0.1:8080/processImage', imagePost, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
+            })
+            .then(res => {
+                imageText = res.data;
             });
-            await this.props.fetchAll()
-            this.props.navigation.pop(2)
+
+        var formData = new FormData();
+
+        formData.append('title', this.state.title);
+        formData.append('desc', this.state.desc);
+        formData.append('content', imageText);
+        formData.append('tags', this.state.tags.join(' '));
+        formData.append('image', base64PathImage);
+
+        console.log('FORM DATA IS');
+        console.log(formData);
+        try {
+            await axios.post(
+                'http://127.0.0.1:8080/fileManage/addDocument/' + foldersID,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
+            await this.props.fetchAll();
+            this.props.navigation.pop(2);
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     };
 
@@ -188,7 +190,6 @@ class PhotoScreen extends Component {
         );
     }
 }
-
 
 export default connect(
     null,
