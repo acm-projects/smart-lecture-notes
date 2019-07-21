@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    ScrollView,
+    TouchableOpacity
+} from 'react-native';
 
 //import { Ionicons } from '@expo/vector-icons';
 
-// import OrderHistory from './OrderHistory'
-// import Schedule from './Schedule'
+import Search from '../Profile/Search';
 
-class ProfileScreen extends Component {
+class ClassesScreen extends Component {
 	static navigationOptions = {
         header: null
     }; 
@@ -80,63 +86,90 @@ class ProfileScreen extends Component {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'column',
-		backgroundColor: 'rgb(255, 255, 255)',
-		justifyContent: 'center'
-	},
-	segmentedIOS: {
-		marginTop: 10,
-		marginLeft: 70,
-		marginRight: 70,
-	},
-	avatar: {
-		width: 80,
-		height: 80,
-		backgroundColor: 'black',
-		borderRadius: 40,
-	},
-	titleBar: {
-		width: '100%',
-		marginTop: 70,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	title: {
-		fontSize: 16,
-		fontFamily: 'Avenir Next',
-		color: '#b8bece',
-		fontWeight: '500',
-	},
-	subTitle: {
-		fontSize: 15,
-		fontFamily: 'Avenir Next',
-		color: '#b8bece',
-		fontWeight: '600',
-		marginLeft: 30,
-		marginTop: 25,
-		textTransform: 'uppercase'
-	},
-	name: {
-		fontSize: 20,
-		fontFamily: 'Avenir Next',
-		color: '#3c4560',
-		fontWeight: '700',
-		paddingTop: 5
-	},
-	classes: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'space-evenly',
-	},
-	text: {
-		fontFamily: 'Avenir Next',
-		fontSize: 20,
-	},
-	setting: {
-		fontSize: 16,
-		fontFamily: 'Avenir Next',
-		color: 'white',
-		fontWeight: '600',
-	}
+  container: {
+    flexDirection: 'column',
+    backgroundColor: 'rgb(255, 255, 255)',
+    justifyContent: 'center'
+  },
+  segmentedIOS: {
+    marginTop: 10,
+    marginLeft: 70,
+    marginRight: 70,
+  },
+  avatar: {
+    width: 80,
+    height: 80,
+    backgroundColor: 'black',
+    borderRadius: 40,
+  },
+  titleBar: {
+    width: '100%',
+    marginTop: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 16,
+    fontFamily: 'Avenir Next',
+    color: '#b8bece',
+    fontWeight: '500',
+  },
+  subTitle: {
+    fontSize: 15,
+    fontFamily: 'Avenir Next',
+    color: '#b8bece',
+    fontWeight: '600',
+    marginLeft: 30,
+    marginTop: 25,
+    textTransform: 'uppercase'
+  },
+  name: {
+    fontSize: 20,
+    fontFamily: 'Avenir Next',
+    color: '#3c4560',
+    fontWeight: '700',
+    paddingTop: 5
+  },
+  classes: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+  },
+  text: {
+    fontFamily: 'Avenir Next',
+    fontSize: 20,
+  },
+  setting: {
+    fontSize: 16,
+    fontFamily: 'Avenir Next',
+    color: 'white',
+    fontWeight: '600',
+  },
+  segmentedIOS: {
+      marginTop: 10,
+      marginLeft: 70,
+      marginRight: 70
+  },
+  button: {
+      backgroundColor: '#E8384F',
+      marginLeft: 5,
+      marginRight: 5,
+      borderRadius: 20,
+      marginBottom: 10,
+      paddingHorizontal: 20,
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center'
+  },
+  buttonText: {
+      textAlign: 'center',
+      color: 'white',
+      fontSize: 20,
+      fontFamily: 'Avenir Next',
+      fontWeight: '500'
+  },
+  search: {
+      alignItems: 'center',
+      justifyContent: 'center'
+  }
 });

@@ -9,13 +9,12 @@ import {
     ActivityIndicator,
     AsyncStorage
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+
 import uuid from 'uuid/v1';
 import moment from 'moment';
 
-import TaskCard from '../TaskCard';
-import FrontCard from '../FrontCard';
-import TaskInput from '../TaskInput';
+import TaskCard from '../Tasks/TaskCard';
+import TaskInput from '../Tasks/TaskInput';
 
 export default class ScheduleScreen extends Component {
     static navigationOptions = {
@@ -239,7 +238,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: '700',
         color: '#3c4560',
-        marginLeft: 20,
+        marginLeft: 20
     },
     searchBar: {
         height: 40,

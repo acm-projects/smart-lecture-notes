@@ -33,7 +33,8 @@ router.post('/',function(req,res) {
     };
     
     client.documentTextDetection(request).then(response => {
-        res.send(response);
+        res.send(response[0].textAnnotations[0].description);
+        console.log('process image data sent');
       })  
       
     });

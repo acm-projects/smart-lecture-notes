@@ -7,8 +7,8 @@ import {
     ScrollView,
     SafeAreaView
 } from 'react-native';
-import ListCard from '../ListCard';
-import NewCard from '../NewCard';
+import ListCard from '../Classes/ListCard';
+import NewCard from '../Classes/NewCard';
 
 import { connect } from 'react-redux';
 
@@ -16,16 +16,6 @@ class ClassesScreen extends Component {
     static navigationOptions = {
         header: null
     };
-
-    componentDidMount() {
-        console.log("BEFORE");
-        console.log(this.props.all[2]);
-        console.log(this.props.all[2].name)
-        this.props.all.map((post, i) =>{
-            console.log(`${i} ${post.name}`)
-        })
-        console.log("AFTER");
-    }
 
     render() {
         return (
@@ -46,7 +36,6 @@ class ClassesScreen extends Component {
                     <Text style={styles.subTitle}>Your classes</Text>
 
                     <SafeAreaView style={styles.classes}>
-
                         {this.props.all.map(function(post, i) {
                             return (
                                 <ListCard
@@ -58,7 +47,7 @@ class ClassesScreen extends Component {
                                     classIndex={i}
                                     classID={post._id}
                                 />
-                            )
+                            );
                         })}
                         <NewCard />
                     </SafeAreaView>
@@ -68,13 +57,11 @@ class ClassesScreen extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     all: state.all
-})
+});
 
-export default connect(
-    mapStateToProps
-)(ClassesScreen);
+export default connect(mapStateToProps)(ClassesScreen);
 
 const styles = StyleSheet.create({
     container: {

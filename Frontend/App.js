@@ -1,20 +1,15 @@
 import React from 'react';
 import Navigator from './Navigator';
-import { connect, Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 
 import reducers from './reducers';
-//import fetchAll from './actions';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
 class App extends React.Component {
-    // componentDidMount() {
-    //     this.props.fetchAll();
-    // }
-
     render() {
         return (
             <Provider store={store}>
