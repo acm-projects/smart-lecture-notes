@@ -34,7 +34,7 @@
     "mongoose": "^5.5.0",
     "multer": "^1.4.1",
     "node-image-filter": "^1.0.0",
-    "lodash": ">=4.17.13"
+    "lodash": ">=4.17.19"
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "^3.0.0"
